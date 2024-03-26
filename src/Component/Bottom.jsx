@@ -6,20 +6,25 @@ import Style from '../CSS/Home.module.css'
 
 export default function Bottom() {
   return (
-    <>
-    <div className={`d-flex bottom-0 ${Style.Bottom}`} style={{background:'rgba(234, 0, 0, 0.499)',overflow:'hidden'}}>
+    <div style={{backgroundColor:'black'}}>
+    <div className={Style.bottom}> 
     <div>
       <Row>
-        <Col >
-        <p>Preview to Spotify</p>
-        <p>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</p>
+        <Col xs={10}>
+          <div className='mx-4 p-0 mb-2  mt-2 text-light '>
+            <span className='fw-bold'>Preview to Spotify</span><br />
+            <span>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</span>
+          </div>
         </Col>
-        <Col>
-        <Button href='/Signup' className={`mx-3 border-0 mb-2 fs-6 fw-semibold ${Style.text}`} style={{backgroundColor:'#121212'}} >Sign up</Button>
+        <Col xs={2}  className="d-flex justify-content-center">
+        <div className={` ${Style.list}`}>
+        <Button href='/Login' variant='light' className={`me-4 rounded-pill my-2 p-2 px-4 py-2 fw-bold ${Style.button}`} >Signup</Button>
+
+          </div>
         </Col>
       </Row>
     </div>
  </div>
-    </>
+    </div>
   )
 }

@@ -14,7 +14,9 @@ export default function Home() {
           <SplitPane   split='vertical'
              minSize={275}
              maxSize={-1100}
-             defaultSize={428}>
+             defaultSize={428}
+             style={{backgroundColor:'black'}}
+             >
             <div  className={`${Style.pane}`} >
                   <Sidebar />
             </div>
@@ -23,8 +25,8 @@ export default function Home() {
             </div>
           </SplitPane>
           </Container>
-         
        </div>
+       <Bottom />
    </>
   )
 }

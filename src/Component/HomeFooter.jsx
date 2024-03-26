@@ -49,7 +49,7 @@ export default function HomeFooter() {
 
              <div>
                 <hr className='mx-2'/>
-                <p style={{color:'white'}}>
+                <p style={{color:'white',marginBottom:'100px'}}>
                 © 2024 Spotify 
                 </p>
              </div>
