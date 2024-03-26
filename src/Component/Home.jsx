@@ -17,10 +17,10 @@ export default function Home() {
              defaultSize={428}
              style={{backgroundColor:'black'}}
              >
-            <div  className={`${Style.pane}`} >
+            <div  className={` me-1 ${Style.pane}`} >
                   <Sidebar />
             </div>
-            <div className={`${Style.pane}`}>
+            <div className={`me-1 ${Style.pane}`}>
                 <Plylist />
             </div>
           </SplitPane>

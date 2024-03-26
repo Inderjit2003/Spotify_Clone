@@ -63,7 +63,7 @@
 }
 .scroll{
   overflow-y: scroll;
-  height: 35rem;
+  height: 525px
 }
 .scroll::-webkit-scrollbar{
   width: 12px;
@@ -76,5 +76,7 @@
   bottom: 0;
   height: 4rem;
   background: linear-gradient(90deg,#af2896,#509bf5);
-  width: 100%;
+  width: 99%;
+  margin-left: 8px;
+  margin-bottom: 8px;
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Button  } from 'react-bootstrap';
+import { Button, Container  } from 'react-bootstrap';
 import Style from '../CSS/Home.module.css'
 
 export default function Bottom() {
