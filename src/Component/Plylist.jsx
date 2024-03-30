@@ -35,6 +35,7 @@ const playlistitems=[{
 }    ]
 
 export default function Plylist() {
+
   return (
     <div className='mx-1 py-2'>
     <Card  style={{backgroundColor:'#121212',border:'none'}}>

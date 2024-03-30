@@ -26,8 +26,8 @@ export default function PlylistNavbar() {
    </Nav>
    <Nav>
      <div className={` ${Style.list}`}>
-     <Button href='/Signup' className={`mx-3 border-0 mb-2 fs-6 fw-semibold ${Style.text}`} style={{backgroundColor:'#121212'}} >Sign up</Button></div>
-     <Button href='/Login' variant='light' className={`me-4 rounded-pill mb-2 p-2 px-4 py-2 fw-bold ${Style.button}`} >Login</Button>
+     <Button href='/signup' className={`mx-3 border-0 mb-2 fs-6 fw-semibold ${Style.text}`} style={{backgroundColor:'#121212'}} >Sign up</Button></div>
+     <Button href='/login' variant='light' className={`me-4 rounded-pill mb-2 p-2 px-4 py-2 fw-bold ${Style.button}`} >Login</Button>
    </Nav>
  </Navbar.Collapse>
 </Container>
