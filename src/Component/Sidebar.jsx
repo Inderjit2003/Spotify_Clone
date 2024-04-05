@@ -8,7 +8,7 @@ export default function Sidebar() {
   return (
     <>
        <div>
-        <Stack gap={2}>
+        <Stack gap={2} >
           <div className='Up'>
             <Card style={{backgroundColor:'#121212' , border:'none'}} className='ms-2 mt-2'>
             <UpSidebar />
