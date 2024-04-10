@@ -1,15 +1,16 @@
 import React from 'react'
 import SplitPane from 'react-split-pane'
-import Sidebar from './Sidebar'
-import Plylist from './Plylist'
 import { Container } from 'react-bootstrap'
 import Style from '../CSS/Home.module.css'
+import Sidebar from './Sidebar'
+import Plylist from './Plylist'
 import Bottom from './Bottom'
-
-export default function Home() {
+export default function LHome() {
   return (
-   <>
-       <div className='container'>
+    <div>
+
+<div className='container'>
+
         <Container className={`${Style.container}`}>
           <SplitPane   split='vertical'
              minSize={305}
@@ -27,6 +28,6 @@ export default function Home() {
           </Container>
        </div>
        <Bottom />
-   </>
+      </div>
   )
 }

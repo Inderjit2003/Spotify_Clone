@@ -1,8 +1,34 @@
 import React from 'react'
 import { Card,CardTitle ,Row,Col ,Stack, Button} from 'react-bootstrap'
 import Style from '../CSS/Home.module.css'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Toast from 'react-bootstrap/Toast';
+import Tooltip from 'react-bootstrap/Tooltip'; 
 
 export default function MidSidebar() {
+
+  const popover = (
+   <Toast delay={3000} className={`ms-5 ${Style.toastcard}`} style={{background:'#0080ff',color:'white',width:'20rem'}}  autohide>     
+          <Toast.Body color='white'>
+            <h6>Create playlist</h6>
+            <p>Log in to create and share playlists.</p>
+            <div class="d-flex justify-content-end">
+            <a href='/'className={`text-decoration-none text-white fw-semibold mx-3 mt-2 ${Style.hoverd}`} >Not Now</a>
+            <Button href='/login' variant='light' className={` rounded-pill btn-sm p-2 px-4 py-2 fw-bold ${Style.button}`}>Login</Button>
+            </div>
+            </Toast.Body>
+    </Toast> );
+  const podcast = (
+    <Toast delay={3000} className={`ms-5 ${Style.toastcard}`} style={{background:'#0080ff',color:'white',width:'20rem'}}  autohide>     
+           <Toast.Body color='white'>
+             <h6>Podcast</h6>
+             <p>Log in to browse and share podcasts.</p>
+             <div class="d-flex justify-content-end">
+             <a href='/'className={`text-decoration-none text-white fw-semibold mx-3 mt-2 ${Style.hoverd}`} >Not Now</a>
+             <Button href='/login' variant='light' className={` rounded-pill btn-sm p-2 px-4 py-2 fw-bold ${Style.button}`}>Login</Button>
+             </div>
+             </Toast.Body>
+    </Toast> );
   return (
     <div>
           <Row>
@@ -28,14 +54,17 @@ export default function MidSidebar() {
                       <Card className='mx-2 my-2 mb-4' style={{marginTop:'5px',background:'#242424'}} >
                         <CardTitle style={{fontSize:'18px',color:'white'}} className='mt-3 mx-3 mb-2'>Create your first playlist</CardTitle>
                         <Card.Text className='mx-3' style={{fontSize:'12px', color:'white'}}>It's easy ,we'll help you</Card.Text>
+
+                        <OverlayTrigger trigger="click" placement='right' overlay={popover}>
                         <Button style={{color:'black', width:'130px',background:'white',border:'none',fontSize:'14px',
-                        borderRadius:'20px'}} className={`ms-3 mb-3 fw-bold ${Style.button}`}>Create playlist</Button>
+                        borderRadius:'20px'}} className={`ms-3 mb-3 fw-bold ${Style.button}`}>Create playlist</Button></OverlayTrigger>
                      </Card>
                      <Card className='mx-2 my-2 mb-4' style={{background:'#242424',marginTop:'5px'}}>
                         <CardTitle style={{fontSize:'18px',color:'white'}} className='mt-3 mx-3 mb-2'>Let's find some podcasts to follow </CardTitle>
                         <Card.Text className='mx-3' style={{fontSize:'12px', color:'white'}}>We'll Keep you updated on new episodes</Card.Text>
+                        <OverlayTrigger trigger="click" placement='right' overlay={podcast}>
                         <Button style={{color:'black',width:'150px',background:'white',border:'none',fontSize:'14px',
-                        borderRadius:'20px'}} className={`ms-3 mb-3 fw-bold ${Style.button}`}>Browse podcasts</Button>
+                        borderRadius:'20px'}} className={`ms-3 mb-3 fw-bold ${Style.button}`}>Browse podcasts</Button></OverlayTrigger>
                      </Card>
                 </div>
                 </div>

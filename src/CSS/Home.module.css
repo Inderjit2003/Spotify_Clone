@@ -47,13 +47,17 @@
 
 .bg{
   background-color:#121212;   
+ 
+}
+.plybg{
+  background: linear-gradient(11deg,rgb(29, 29, 29),rgb(29, 28, 28));
 }
 .p{
   font-size: 10px ;   
 }
 .scroll{
   overflow-y: scroll;
-  height: 525px
+  height: 75vh
 }
 .scroll::-webkit-scrollbar{
   width: 12px;
@@ -79,22 +83,35 @@
   right: 10px; /* Adjust as needed to position the play button */
   width: 40px;
   height: 40px;
-  background-color:  #1ED760;
+  background-color: #1ed760;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 1; /* Initially hide the play button */
+  opacity: 0; /* Initially hide the play button */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
 }
-.card:hover .play {
+
+.cardbody:hover .play {
   opacity: 1; /* Show the play button on hover */
 }
+
+.cardbody {
+  background-color: #121212;
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+  height: 30rem;
+}
+
+.cardbody:hover {
+  background: linear-gradient(130deg, #121212, rgb(82, 82, 82));
+}
+
+
 .LoginDiv{
   /* min-height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5px;
 }
 .loginform{
   display: flex;
@@ -105,6 +122,7 @@
   /* background: linear-gradient(rgba(22, 22, 22, 0.818) 0%, rgb(0, 0, 0) 100%); */
   background-color: black;
   min-height: 100vh;
+ 
 }
 .textinputdiv{
 display: flex;
@@ -116,6 +134,7 @@ border-color: rgb(104, 105, 104);
   display: flex;
   align-items: center;
   width: 25rem;
+  background: #121212;
 }
 .inputWrapper {
   display: flex;
@@ -141,14 +160,13 @@ border-color: rgb(104, 105, 104);
 }
 .inputcontainer input {
   border: none;
-  background-color: transparent;
+  background-color: black;
   margin-left: 5px;
   color: white;
   font-size: 1rem;
   font-weight: 400;
   outline:none;
   width: 23rem;
-  margin-top: 5px;
 }
 .inputiconbutton{
   position: absolute;
@@ -175,3 +193,46 @@ border-color: rgb(104, 105, 104);
   width: 25rem;
   color: white;
 }
+
+
+.opt{
+  display: flex;
+   justify-content: space-between;
+   gap: 2;
+}
+.opt input {
+  margin-right: 0;
+  flex: 1;
+  padding-top: 5;
+  padding-bottom: 5;
+  outline: none;
+}
+
+/* toast */
+.hoverd{
+  opacity: 0.5; /* Initial opacity for fading effect */
+  transition: opacity 0.3s ease; /* Transition for fading effect */
+  font-size: 1.7vh;
+}
+.hoverd:hover{
+  opacity: 1;
+  /* color: white; */
+}
+.toastcard{
+  /* Existing styles... */
+  position: relative; /* Make the toast element relative for positioning */
+}
+
+.toastcard::before {
+  content: ""; /* Add an empty content to avoid affecting text layout */
+  position: absolute;
+  top: 50%; /* Position the arrow vertically centered */
+  left: -10px;  /* Position the arrow 10px outside the left edge */
+  transform: translateY(-50%); /* Center the arrow vertically within the content area */
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent; /* Left border for the arrow shape */
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #0080ff; /* Bottom border with toast background color for arrow */
+}
+
