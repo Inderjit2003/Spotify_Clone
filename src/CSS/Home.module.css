@@ -218,21 +218,5 @@ border-color: rgb(104, 105, 104);
   opacity: 1;
   /* color: white; */
 }
-.toastcard{
-  /* Existing styles... */
-  position: relative; /* Make the toast element relative for positioning */
-}
 
-.toastcard::before {
-  content: ""; /* Add an empty content to avoid affecting text layout */
-  position: absolute;
-  top: 50%; /* Position the arrow vertically centered */
-  left: -10px;  /* Position the arrow 10px outside the left edge */
-  transform: translateY(-50%); /* Center the arrow vertically within the content area */
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent; /* Left border for the arrow shape */
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid #0080ff; /* Bottom border with toast background color for arrow */
-}
 

@@ -22,7 +22,7 @@ export default function LHome() {
                   <Sidebar />
             </div>
             <div className={`me-1 ${Style.pane}`}>
-                <Plylist />
+              
             </div>
           </SplitPane>
           </Container>

@@ -41,9 +41,11 @@ export default function MidPlylist({ items }) {
         })
         // Add your logic here to handle the click event
     };
+   
     const [showCards , setshowCards] = useState(false);
     const toggleCards = () =>{
         setshowCards(!showCards);
+        
     }
     return (
         <Container fluid className={`mt-2 ${style.scroll}`}>
@@ -55,7 +57,7 @@ export default function MidPlylist({ items }) {
                 </Col>
                 <Col xs={12} sm={4} className={`${style.list} text-end`}>
                     <a href="/" className="text-decoration-none text-white" onClick={toggleCards}>
-                        <p className={`${style.text}`}>{showCards ? 'Hide Cards' : 'show all'}</p>
+                        <p className={`${style.text}`}>{showCards ? 'show all' : 'show all'}</p>
                     </a>
                 </Col>
             </Row>
