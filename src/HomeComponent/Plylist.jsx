@@ -8,6 +8,7 @@ export default function Plylist({ playlistitems,onPlay }) {
   const handleCardClick = (index) => {
     if (onPlay) {
       onPlay(playlistitems[index].audio);  // Pass audio path to onPlay function
+   
     }
   };
   return (

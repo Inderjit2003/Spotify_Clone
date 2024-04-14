@@ -5,41 +5,42 @@ import Plylist from './Plylist';
 import { Container } from 'react-bootstrap';
 import Style from '../CSS/Home.module.css';
 import Bottom from './Bottom';
-import a1 from '../assets/audio/Aam Jahe.mp3';
-import a2 from '../assets/audio/Apa Fer Milange.mp3';
-
-
+import a1 from '../assets/music/Bir Zindagi.mp3';
+import a2 from '../assets/music/Apa Fer Milange.mp3';
+import a3 from '../assets/music/Bhali Kare Kartar.mp3';
+import a4 from '../assets/music/Chal Jindiye.mp3';
+import a5 from '../assets/music/My Pride.mp3';
 export default function LHome() {
-  const playlistitems = [
+  const songs = [
     {
-      img: 'https://i.scdn.co/image/ab67616d00001e02249e235cc514c7071e4bd049',
-      name: 'Aam jahe munde',
-      desc: 'PARDHANE',
-      audio: a1,
-      color: '#851e1e',
-     
+      img_src: 'https://i.scdn.co/image/ab67616d00001e02d6ae8f55846c610a0b112960',
+      title: 'Zindagi',
+      artist: 'Bir Singh',
+      src: a1,
     },
     {
-      img: 'https://i.scdn.co/image/ab67616d00001e022494fb8ce966d471e74c81da',
-      name: 'Apa fer milanga (Lofi version)',
-      desc: 'Savi kahlon',
-      audio: a2,
-      color:'#1e6888',
-      
+      img_src: 'https://i.scdn.co/image/ab67616d00001e0284a4d897fd4310573be70012',
+      title: 'Apa fer milanga (Lofi version)',
+      artist: 'Savi kahlon',
+      src: a2,
     },
     {
-      img: 'https://i.scdn.co/image/ab67616d00001e02249e235cc514c7071e4bd049',
-      name: 'Aam jahe munde',
-      desc: 'PARDHANE',
-      audio: a1,
-      color: '#851e1e'
+      img_src: 'https://i.scdn.co/image/ab67616d00001e023180f91f2221f258e5865b1e      ',
+      title: 'Bhale Kare Kartar',
+      artist: 'Bir Singh',
+      src: a3,
     },
     {
-      img: 'https://i.scdn.co/image/ab67616d00001e022494fb8ce966d471e74c81da',
-      name: 'Apa fer milanga (Lofi version)',
-      desc: 'Savi kahlon',
-      audio: a2,
-      color:'#1e6888'
+      img_src: 'https://i.scdn.co/image/ab67616d00001e021bbccdf9094270ef73e39b91      ',
+      title: 'Chal jindiye',
+      artist: 'Amrinder Gill',
+      src: a4,
+    },
+    {
+      img_src: 'https://i.scdn.co/image/ab67616d00001e020bf67e6f69d194a32295c686',
+      title: 'My Pride',
+      artist: 'Tarsem Jasar',
+      src: a5,
     },
   ];
 
@@ -62,8 +63,10 @@ export default function LHome() {
             <div className={` me-1 ${Style.pane}`}>
               <Sidebar />
             </div>
+
+            
             <div className={`me-1 ${Style.pane}`}>
-              <Plylist playlistitems={playlistitems} onPlay = {handlePlay}
+              <Plylist playlistitems={songs} onPlay = {handlePlay}
               />
             </div>
           </SplitPane>

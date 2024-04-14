@@ -1,28 +1,38 @@
 import React, { useState , useEffect } from 'react';
 import { Col, Container, Row, Button } from 'react-bootstrap';
+import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons'; // Import the heart icon
+import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 import style from '../CSS/LoginHome.module.css';
 import Artist from '../assets/svg/martist.svg';
 
-const Plc = ({ items, index  }) => {
+
+const Plc = ({ items, index, onPlay  }) => {
     const [addFavourite, setAddFavourite] = useState(false);
     const selectedItem = items[index];
-    
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [audioPath, setAudioPath] = useState(''); // Define audioPath state
+    const handlePlayPause = () => {
+        setIsPlaying(!isPlaying); // Toggle isPlaying state
+        const selectedItem = items[index];
+        setAudioPath(selectedItem.src);
+        onPlay(selectedItem.src);
+    };
+
     return (
         
         <div style={{backgroundColor:selectedItem.color}} >
             <Container  >
                 <Row>  
                     <Col className='m-4' xs={3}  >
-                        <img src={selectedItem.img} alt={selectedItem.name} className='img-thumbnail rounded' style={{ width: '35vh' }} />
+                        <img src={selectedItem.img_src} alt={selectedItem.title} className='img-thumbnail rounded' style={{ width: '35vh' }} />
                     </Col>
                     <Col className='text-white ms-2' style={{ marginTop: '6%' }} >
-                        <h1>{selectedItem.name}</h1>
+                        <h1>{selectedItem.title}</h1>
                         <div>
                             <img src={Artist} alt="" />
-                            <span className={`ms-3 m-2 mb-2 fs-5 mt-3 fw-semibold`}>{selectedItem.desc}</span>
+                            <span className={`ms-3 m-2 mb-2 fs-5 mt-3 fw-semibold`}>{selectedItem.artist}</span>
                         </div>
                     </Col>
                 </Row>
@@ -31,24 +41,19 @@ const Plc = ({ items, index  }) => {
             <Container>
                 <Row className='mt-4'>
                     <Col xs={1} >
-                        <span>
-                            <div className={` mt-1 ${style.play}`}>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="30"
-                                    height="30"
-                                    fill="black"
-                                    className="bi bi-play-fill ms-1"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
-                                </svg>
+                        <span >
+                            <div className={` mt-1 ${style.play}`} onClick={handlePlayPause}>
+                        {isPlaying ? (
+                            <FontAwesomeIcon icon={faPause} />
+                        ) : (
+                            <FontAwesomeIcon icon={faPlay} />
+                        )}
                             </div>
                         </span>
                     </Col>
-                    <Col >
-                        <span className='ms-2  '>
-                        <Button
+                    <Col className='mt-2' >
+                        <span className='ms-3  '>
+                        <span 
                               style={{
                                   backgroundColor:selectedItem.color ,
                                   border: 'none',
@@ -85,7 +90,7 @@ const Plc = ({ items, index  }) => {
                                    >
                                        <path d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12zm16.398-2.38a1 1 0 0       0-1.414-1.413l-6.011 6.01-1.894-1.893a1 1 0 0 0-1.414 1.414l3.308 3.308 7.425-7.425z"></path>
                                    </svg>      
-                               )}      </Button>      
+                               )}      </span>      
                         </span>
                     </Col>
                 </Row>
@@ -106,18 +111,21 @@ const Plc = ({ items, index  }) => {
                 <h1 className=''></h1>
                         <Row >
                          <Col className='ms-4' xs={1} >
-                         <img src={selectedItem.img} alt={selectedItem.name}  style={{width:'7vh' ,height:'7vh' , marginTop:"4vh", borderRadius:'50%'}}/>
+                         <img src={selectedItem.img_src} alt={selectedItem.title}  style={{width:'7vh' ,height:'7vh' , marginTop:"4vh", borderRadius:'50%'}}/>
                          </Col>
                          <Col className='text-white ' style={{marginTop:'4vh'}}>
                          <span className='fs-6 fw-bold'>Arist</span>
-                         <span className='fs-6'><p>{selectedItem.desc}</p></span>
+                         <span className='fs-6'><p>{selectedItem.artist}</p></span>
                          </Col>
                      </Row>
 
             </div>
             </Container>
             </div>
-         
+            <AudioPlayer  src={audioPath}
+            autoPlay={isPlaying}
+            //    autoPlay
+          style={{background:'black'}} />
         </div>
     );
 };

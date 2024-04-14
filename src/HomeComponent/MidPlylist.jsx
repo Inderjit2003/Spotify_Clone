@@ -3,7 +3,6 @@ import style from '../CSS/Home.module.css';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import HomeFooter from './HomeFooter';
 import Plc from '../SharedComponent/Plc';
-
 export default function MidPlylist({ items,onPlay }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
@@ -22,6 +21,12 @@ export default function MidPlylist({ items,onPlay }) {
     const handleShowAllClick = () => {
         setSelectedCardIndex(null); // Deselect the selected card
     };
+    const [audioIsPlaying, setAudioIsPlaying] = useState(false);
+    const handlePlay = (audioPath) => {
+        // Your logic to play audio
+        console.log('Playing audio:', audioPath);
+        setAudioIsPlaying(true);
+    };
     return (
         <div>
         <Container fluid className={` ${style.scroll}`}>
@@ -29,7 +34,7 @@ export default function MidPlylist({ items,onPlay }) {
             <section className="mt-2">
                 {!selectedCardIndex ? (
                 <div>
-            <Row className="justify-content-between align-items-center">
+                    <Row className="justify-content-between align-items-center">
                 <Col xs={12} sm={8}>
                     <a href="/" className="text-decoration-none text-white">
                         <h4>Spotify Playlist</h4>
@@ -51,11 +56,11 @@ export default function MidPlylist({ items,onPlay }) {
                                     onClick={() => handleCardClick(index)}
                                     style={{ backgroundColor: hoveredIndex === index ? 'rgb(82, 82, 82)' : '#121212', cursor: 'pointer' }}
                                 >
-                                    <Card.Img variant="top" src={value.img} />
+                                    <Card.Img variant="top" src={value.img_src} />
                                     <Card.Body style={{ color: 'white', height: '7rem' }}>
                                         <Card.Text>
-                                            <h6>{value.name}</h6>
-                                            <p className={style.p}>{value.desc}</p>
+                                            <h6>{value.title}</h6>
+                                            <p className={style.p}>{value.artist}</p>
                                         </Card.Text>
                                         {hoveredIndex === index && (
                                             <div className={style.play}>
@@ -78,11 +83,12 @@ export default function MidPlylist({ items,onPlay }) {
                     </Row>
                 </div>
             ) : (
-                    <Plc items={items} index={selectedCardIndex}  onPlay={onPlay} />
+                    <Plc items={items} index={selectedCardIndex} onPlay={handlePlay}  />
                 )}
             </section>
 </div>
             <HomeFooter />
+            
         </Container>
         </div>
     );
