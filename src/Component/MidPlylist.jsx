@@ -41,7 +41,8 @@ export default function MidPlylist({ items }) {
         })
         // Add your logic here to handle the click event
     };
-   
+  const [cardData , setCardData ] = useState();
+
     const [showCards , setshowCards] = useState(false);
     const toggleCards = () =>{
         setshowCards(!showCards);
@@ -57,7 +58,7 @@ export default function MidPlylist({ items }) {
                 </Col>
                 <Col xs={12} sm={4} className={`${style.list} text-end`}>
                     <a href="/" className="text-decoration-none text-white" onClick={toggleCards}>
-                        <p className={`${style.text}`}>{showCards ? 'show all' : 'show all'}</p>
+                        <p className={`${style.text}`}>show all</p>
                     </a>
                 </Col>
             </Row>
@@ -68,7 +69,7 @@ export default function MidPlylist({ items }) {
                     // Render AllCardsComponent if showAllCards is true
                 ) : (
                 <Row xs={1} md={2} lg={3} xl={6} className="g-0 p-2">
-                    {items.slice(0, 6).map((value, index) => (
+                    {items.map((value, index) => (
                         <Col key={index}>
                             <Card
                                 onMouseEnter={() => handleMouseEnter(index)}

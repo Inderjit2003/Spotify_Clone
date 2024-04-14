@@ -1,0 +1,22 @@
+.bottom{
+position: fixed;
+background: #000;
+height: 2.5rem;
+width: 90%;
+left: 4.5%;
+bottom: 5vh;
+margin-bottom: 8px;
+}
+.play {
+    width: 45px;
+    height: 45px;
+    background-color: #1ed760;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   margin-left: 7vh;
+   margin-right: 3vh;
+  }
+
+    

@@ -7,13 +7,10 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Style from '../CSS/Home.module.css'
 import { Link } from 'react-router-dom'
 
-
-
 export default function Signup() {
 //Showing Password
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  // const (gofprward,goback) =useHistory()
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -34,7 +31,20 @@ export default function Signup() {
     e.preventDefault();
     const errors = validateForm();
     if(Object.keys(errors).length === 0){
-     window.location.href = '/';
+      try{
+        const response = await axios.post('http://localhost:3000/signup', {
+          username,
+          email,
+          password,
+      });
+    
+      console.log(response.data); // Handle response data (e.g., show success message)
+      window.location.href='/Home'
+      //  setIsSubmit(true);
+       
+      }catch (error) {
+        console.log(error);
+      }
     }else{
       setFormErrors(errors);
     }
