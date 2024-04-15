@@ -37,7 +37,8 @@
     "react-shimmer-effects": "^1.0.3",
     "react-spinners": "^0.13.8",
     "react-split-pane": "^0.1.92",
-    "sweetalert2": "^11.10.7"
+    "react-toastify": "^10.0.5",
+    "sweetalert2": "^11.6.13"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

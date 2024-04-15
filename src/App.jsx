@@ -4,11 +4,9 @@ import Home from './Component/Home'
 import Login from './AuthComp/Login'
 import Signup from './AuthComp/Signup'
 import LHome from './HomeComponent/LHome'
-import Plc from './SharedComponent/Plc.jsx'
 import Search from './HomeComponent/Search.jsx'
-
-
 export default function App() {
+  
   return (
     <>
     <div>
@@ -20,8 +18,10 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path ="/Home" element = { <LHome />} />
-        <Route path='/Home/Playlist' element = { <Plc />} />
+
         <Route path='/Search' element={<Search /> } />
+      
+
     </Routes>
      </div>
     </BrowserRouter>

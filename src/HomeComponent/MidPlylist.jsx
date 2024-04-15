@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import style from '../CSS/Home.module.css';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import Style from '../CSS/LoginHome.module.css';
+import { Card, Col, Container, Row ,CardBody} from 'react-bootstrap';
 import HomeFooter from './HomeFooter';
 import Plc from '../SharedComponent/Plc';
-export default function MidPlylist({ items,onPlay }) {
+
+export default function MidPlylist({ items, onPlay }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
+    const [isPlaying, setIsPlaying] = useState(false);
     const handleMouseEnter = (index) => {
         setHoveredIndex(index);
     };
@@ -13,83 +16,115 @@ export default function MidPlylist({ items,onPlay }) {
         setHoveredIndex(null);
     };
     const handleCardClick = (index) => {
-        console.log('Clicked on card:', index);
-        if (index !== null) {
-          setSelectedCardIndex(index);
+        if (selectedCardIndex === index) {
+            // If the same card is clicked again, deselect it
+
+            setSelectedCardIndex(null);
+        } else {
+            setSelectedCardIndex(index);
+            setIsPlaying(!isPlaying);
+            setAudioPath(selectedItem.src);
+            onPlay(selectedItem.src);
         }
     };
     const handleShowAllClick = () => {
         setSelectedCardIndex(null); // Deselect the selected card
     };
-    const [audioIsPlaying, setAudioIsPlaying] = useState(false);
-    const handlePlay = (audioPath) => {
-        // Your logic to play audio
-        console.log('Playing audio:', audioPath);
-        setAudioIsPlaying(true);
-    };
+    const lib = [{ 
+        img_src: 'https://i.scdn.co/image/ab67616d00001e02d6ae8f55846c610a0b112960',
+        title: 'Zindagi',
+        artist: 'Bir Singh',
+        color:' #1e3b60'
+      },
+      {
+        img_src: 'https://i.scdn.co/image/ab67616d00001e0284a4d897fd4310573be70012',
+        title: 'Apa fer milanga (Lofi version)',
+        artist: 'Savi kahlon',
+        color:'#1e6051'
+      },
+      {
+        img_src: 'https://i.scdn.co/image/ab67616d00001e023180f91f2221f258e5865b1e      ',
+        title: 'Bhale Kare Kartar',
+        artist: 'Bir Singh',
+        color:'#333073'
+      },
+      {
+        img_src: 'https://i.scdn.co/image/ab67616d00001e021bbccdf9094270ef73e39b91      ',
+        title: 'Chal jindiye',
+        artist: 'Amrinder Gill',
+        color:'#73305b'
+      },
+      {
+        img_src: 'https://i.scdn.co/image/ab67616d00001e020bf67e6f69d194a32295c686',
+        title: 'My Pride',
+        artist: 'Tarsem Jasar',
+        color:'#72100e'
+      },]
     return (
         <div>
-        <Container fluid className={` ${style.scroll}`}>
-            <div>
-            <section className="mt-2">
-                {!selectedCardIndex ? (
+            <Container fluid className={` ${Style.scrollStart}`}>
                 <div>
-                    <Row className="justify-content-between align-items-center">
-                <Col xs={12} sm={8}>
-                    <a href="/" className="text-decoration-none text-white">
-                        <h4>Spotify Playlist</h4>
-                    </a>
-                </Col>
-                <Col xs={12} sm={4} className={`${style.list} text-end`}>
-                    <a href="/" className="text-decoration-none text-white">
-                        <p className={`${style.text}`} onClick={handleShowAllClick}>show all</p>
-                    </a>
-                </Col>
-            </Row>
-                    <Row xs={1} md={2} lg={3} xl={6} className="g-0 p-2">
-                        {items.map((value, index) => (
-                            <Col key={index}>
-                                <Card
-                                    onMouseEnter={() => handleMouseEnter(index)}
-                                    onMouseLeave={handleMouseLeave}
-                                    className={`mb-2 p-2 ${style.cardbody}`}
-                                    onClick={() => handleCardClick(index)}
-                                    style={{ backgroundColor: hoveredIndex === index ? 'rgb(82, 82, 82)' : '#121212', cursor: 'pointer' }}
-                                >
-                                    <Card.Img variant="top" src={value.img_src} />
-                                    <Card.Body style={{ color: 'white', height: '7rem' }}>
-                                        <Card.Text>
-                                            <h6>{value.title}</h6>
-                                            <p className={style.p}>{value.artist}</p>
-                                        </Card.Text>
-                                        {hoveredIndex === index && (
-                                            <div className={style.play}>
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width="24"
-                                                    height="24"
-                                                    fill="black"
-                                                    className="bi bi-play-fill"
-                                                    viewBox="0 0 16 16"
-                                                >
-                                                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
-                                                </svg>
-                                            </div>
-                                        )}
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))}
-                    </Row>
+                    <section>
+                
+                    </section>
+                    <section className="mt-2">
+                        {!selectedCardIndex ? (
+                            <div>
+                                <Row className="justify-content-between align-items-center">
+                                    <Col xs={12} sm={8}>
+                                        <a href="/" className="text-decoration-none text-white">
+                                            <h4>Spotify Playlist</h4>
+                                        </a>
+                                    </Col>
+                                    <Col xs={12} sm={4} className={`${style.list} text-end`}>
+                                        <a href="/" className="text-decoration-none text-white">
+                                            <p className={`${style.text}`} onClick={handleShowAllClick}>show all</p>
+                                        </a>
+                                    </Col>
+                                </Row>
+                                <Row xs={1} md={2} lg={3} xl={6} className="g-0 p-2">
+                                    {items.map((value, index) => (
+                                        <Col key={index}>
+                                            <Card
+                                                className={`mb-2 p-2 ${style.cardbody}`}
+                                                onClick={() => handleCardClick(index)}
+                                                onMouseEnter={() => handleMouseEnter(index)}
+                                                onMouseLeave={handleMouseLeave}
+                                                style={{ backgroundColor: hoveredIndex === index ? 'rgb(82, 82, 82)' : '#121212', cursor: 'pointer' }}
+                                            >
+                                                <Card.Img variant="top" src={value.img_src} style={{ borderRadius: '1vh' }} />
+                                                <Card.Body style={{ color: 'white', height: '7rem' }}>
+                                                    <Card.Text>
+                                                        <h6>{value.title}</h6>
+                                                        <p className={style.p}>{value.artist}</p>
+                                                    </Card.Text>
+                                                    {hoveredIndex === index && (
+                                                        <div className={style.play}>
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                width="24"
+                                                                height="24"
+                                                                fill="black"
+                                                                className="bi bi-play-fill"
+                                                                viewBox="0 0 16 16"
+                                                            >
+                                                                <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
+                                                            </svg>
+                                                        </div>
+                                                    )}
+                                                </Card.Body>
+                                            </Card>
+                                        </Col>
+                                    ))}
+                                </Row>
+                            </div>
+                        ) : (
+                            <Plc items={items} index={selectedCardIndex} onPlay={onPlay} />
+                        )}
+                    </section>
                 </div>
-            ) : (
-                    <Plc items={items} index={selectedCardIndex} onPlay={handlePlay}  />
-                )}
-            </section>
-</div>
-            <HomeFooter />
-            
-        </Container>
+                <HomeFooter />
+            </Container>
         </div>
     );
 }

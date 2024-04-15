@@ -1,15 +1,15 @@
 import React, { useState , useEffect } from 'react';
-import { Col, Container, Row, Button } from 'react-bootstrap';
-import AudioPlayer from 'react-h5-audio-player';
-import 'react-h5-audio-player/lib/styles.css';
+import { Col, Container, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 import style from '../CSS/LoginHome.module.css';
 import Artist from '../assets/svg/martist.svg';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Plc = ({ items, index, onPlay  }) => {
     const [addFavourite, setAddFavourite] = useState(false);
+
     const selectedItem = items[index];
     const [isPlaying, setIsPlaying] = useState(false);
     const [audioPath, setAudioPath] = useState(''); // Define audioPath state
@@ -18,6 +18,11 @@ const Plc = ({ items, index, onPlay  }) => {
         const selectedItem = items[index];
         setAudioPath(selectedItem.src);
         onPlay(selectedItem.src);
+    };
+    const handleAddFavourite = () => {
+        setAddFavourite(!addFavourite)
+        const message = addFavourite ? 'Added to favorites' : ' Removed from favorites';
+        toast.success(message);
     };
 
     return (
@@ -63,7 +68,7 @@ const Plc = ({ items, index, onPlay  }) => {
                                   width: '50px', // Adjust width and height for the circular button
                                   height: '50px',
                                     }}
-                                    onClick={() => setAddFavourite(!addFavourite)}>
+                                    onClick={handleAddFavourite}>
                                {addFavourite ? (
                                    <svg
                                        xmlns="http://www.w3.org/2000/svg"
@@ -122,10 +127,10 @@ const Plc = ({ items, index, onPlay  }) => {
             </div>
             </Container>
             </div>
-            <AudioPlayer  src={audioPath}
-            autoPlay={isPlaying}
-            //    autoPlay
-          style={{background:'black'}} />
+                    {/* ToastContainer for displaying toasts */}
+                    <ToastContainer position="bottom-center" animation='true' autoClose={500} hideProgressBar='true' />
+       
+           
         </div>
     );
 };

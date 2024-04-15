@@ -17,9 +17,7 @@ export default function Sidebar() {
           <div className='mid'>
             <Card style={{backgroundColor:'#121212' , border:'none',maxHeight:'500px'}} className=' ms-2'>
                   <MidSidebar />
-                  <div className='fot '  style={{marginTop:'10px'}}>
-                      <FotSidebar  />
-                  </div>
+             
             </Card>
 
           </div>
