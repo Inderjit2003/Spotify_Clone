@@ -30,36 +30,7 @@ export default function MidPlylist({ items, onPlay }) {
     const handleShowAllClick = () => {
         setSelectedCardIndex(null); // Deselect the selected card
     };
-    const lib = [{ 
-        img_src: 'https://i.scdn.co/image/ab67616d00001e02d6ae8f55846c610a0b112960',
-        title: 'Zindagi',
-        artist: 'Bir Singh',
-        color:' #1e3b60'
-      },
-      {
-        img_src: 'https://i.scdn.co/image/ab67616d00001e0284a4d897fd4310573be70012',
-        title: 'Apa fer milanga (Lofi version)',
-        artist: 'Savi kahlon',
-        color:'#1e6051'
-      },
-      {
-        img_src: 'https://i.scdn.co/image/ab67616d00001e023180f91f2221f258e5865b1e      ',
-        title: 'Bhale Kare Kartar',
-        artist: 'Bir Singh',
-        color:'#333073'
-      },
-      {
-        img_src: 'https://i.scdn.co/image/ab67616d00001e021bbccdf9094270ef73e39b91      ',
-        title: 'Chal jindiye',
-        artist: 'Amrinder Gill',
-        color:'#73305b'
-      },
-      {
-        img_src: 'https://i.scdn.co/image/ab67616d00001e020bf67e6f69d194a32295c686',
-        title: 'My Pride',
-        artist: 'Tarsem Jasar',
-        color:'#72100e'
-      },]
+
     return (
         <div>
             <Container fluid className={` ${Style.scrollStart}`}>

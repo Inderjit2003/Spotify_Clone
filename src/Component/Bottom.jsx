@@ -6,7 +6,7 @@ import Style from '../CSS/Home.module.css'
 
 export default function Bottom() {
   return (
-
+    <div >
     <div className={Style.bottom}> 
     <div>
       <Row>
@@ -18,12 +18,13 @@ export default function Bottom() {
         </Col>
         <Col xs={2}  className="d-flex justify-content-center">
         <div className={` ${Style.list}`}>
-        <Button href='/signup' variant='light' className={`me-4 rounded-pill mb-2 mt-2  p-2 px-4 py-2 fw-bold ${Style.button}`}>Signup</Button>
+        <Button href='/Signup' variant='light' className={`me-4 rounded-pill my-2 p-2 px-4 py-2 fw-bold ${Style.button}`} >Signup</Button>
+
           </div>
         </Col>
       </Row>
     </div>
  </div>
-
+    </div>
   )
 }

@@ -5,6 +5,7 @@ import Login from './AuthComp/Login'
 import Signup from './AuthComp/Signup'
 import LHome from './HomeComponent/LHome'
 import Search from './HomeComponent/Search.jsx'
+import Hello from './yy/Hello.jsx'
 export default function App() {
   
   return (
@@ -20,7 +21,7 @@ export default function App() {
         <Route path ="/Home" element = { <LHome />} />
 
         <Route path='/Search' element={<Search /> } />
-      
+        <Route path='/Hello' element={<Hello /> } />
 
     </Routes>
      </div>

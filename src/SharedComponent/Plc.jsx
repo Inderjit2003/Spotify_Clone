@@ -1,5 +1,5 @@
 import React, { useState , useEffect } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 import style from '../CSS/LoginHome.module.css';
@@ -7,17 +7,16 @@ import Artist from '../assets/svg/martist.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Plc = ({ items, index, onPlay  }) => {
+const 
+
+Plc = ({ items, index, onPlayPause  }) => {
     const [addFavourite, setAddFavourite] = useState(false);
 
     const selectedItem = items[index];
     const [isPlaying, setIsPlaying] = useState(false);
-    const [audioPath, setAudioPath] = useState(''); // Define audioPath state
     const handlePlayPause = () => {
         setIsPlaying(!isPlaying); // Toggle isPlaying state
-        const selectedItem = items[index];
-        setAudioPath(selectedItem.src);
-        onPlay(selectedItem.src);
+        onPlayPause(selectedItem.src);
     };
     const handleAddFavourite = () => {
         setAddFavourite(!addFavourite)
@@ -56,7 +55,7 @@ const Plc = ({ items, index, onPlay  }) => {
                             </div>
                         </span>
                     </Col>
-                    <Col className='mt-2' >
+                    <Col className='mt-1' >
                         <span className='ms-3  '>
                         <span 
                               style={{
@@ -108,7 +107,7 @@ const Plc = ({ items, index, onPlay  }) => {
                          <span className='fs-5 fw-semibold ms-4'>Lyrics</span>
                          <span>{selectedItem.lyrics}</span>
                          </div>
-                    </Col>
+                    </Col> 
                 </Row>
             </Container>
         
@@ -129,8 +128,6 @@ const Plc = ({ items, index, onPlay  }) => {
             </div>
                     {/* ToastContainer for displaying toasts */}
                     <ToastContainer position="bottom-center" animation='true' autoClose={500} hideProgressBar='true' />
-       
-           
         </div>
     );
 };

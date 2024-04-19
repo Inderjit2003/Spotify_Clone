@@ -5,6 +5,7 @@ import Style from '../CSS/Home.module.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import LsNavbar from './LsNavbar'
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +33,9 @@ export default function Login() {
 
   return (
     <div className={`${Style.bgls}`}>
+      <LsNavbar />
       {/* Your UI code */}
+      <div className={`${Style.LoginDiv}`} >
       <Card className={``} style={{ backgroundColor: 'black', color: 'white', width: '43rem', alignItems: 'center', height: '34rem' }}>
         <Card.Body>
           <h1 className='fw-bold mt-3 mb-2 ' style={{ textAlign: 'center' }}> Login to Spotify</h1>
@@ -102,6 +105,7 @@ export default function Login() {
           </div>
         </Card.Body>
       </Card>
+      </div>
     </div>
   );
 }

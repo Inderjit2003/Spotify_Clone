@@ -7,10 +7,13 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Style from '../CSS/Home.module.css'
 import { Link } from 'react-router-dom'
 
+
+
 export default function Signup() {
 //Showing Password
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  // const (gofprward,goback) =useHistory()
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -31,20 +34,7 @@ export default function Signup() {
     e.preventDefault();
     const errors = validateForm();
     if(Object.keys(errors).length === 0){
-      try{
-        const response = await axios.post('http://localhost:3000/signup', {
-          username,
-          email,
-          password,
-      });
-    
-      console.log(response.data); // Handle response data (e.g., show success message)
-      window.location.href='/Home'
-      //  setIsSubmit(true);
-       
-      }catch (error) {
-        console.log(error);
-      }
+     window.location.href = '/';
     }else{
       setFormErrors(errors);
     }
@@ -58,7 +48,7 @@ export default function Signup() {
     else if (password.length < 8) {
       errors.password = 'Password must be at least 8 characters';
      } 
-     else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(password)) {
+     else if (!/(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]/.test(password)) {
       errors.password = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';}
       if(password !== confirmPassword) {errors.confirmPassword = 'Passwords do not match';}
       return errors;
@@ -114,7 +104,7 @@ export default function Signup() {
                     ><FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
                     </button>
                   </div>
-                  <p>{formErrors.password}</p>
+                  <p style={{width:'55vh'}}>{formErrors.password}</p>
                 </div>
           </div>
           <div className={`${Style.loginform}`}>

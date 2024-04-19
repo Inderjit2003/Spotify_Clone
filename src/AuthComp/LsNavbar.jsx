@@ -1,5 +1,5 @@
 import React from 'react'
-import Img from '../assets/logo.svg'
+// import Img from '../assets/logo.svg'
 
 export default function LsNavbar() {
   return (

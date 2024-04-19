@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useRef } from 'react';
 import SplitPane from 'react-split-pane';
 import Sidebar from './Sidebar';
 import Plylist from './Plylist';
 import { Container } from 'react-bootstrap';
 import Style from '../CSS/Home.module.css';
 import Bottom from './Bottom';
+import BellIcon from './BellIcon';
+import InstallApp from './InstallApp';
+import LibComp from './LibComp';
+import Profile from './Profile'
 import a1 from '../assets/music/Bir Zindagi.mp3';
 import a2 from '../assets/music/Apa Fer Milange.mp3';
 import a3 from '../assets/music/Bhali Kare Kartar.mp3';
@@ -49,11 +53,54 @@ export default function LHome() {
     },
   ];
 
+  const [isPlaying, setIsPlaying] = useState(false);
   const [audioPath, setAudioPath] = useState(null);
 
-  const handlePlay = (path) => {
+  const handlePlayPause = (path) => {
+    setIsPlaying(!isPlaying);
     setAudioPath(path);
   };
+
+  const [install, setInstall] = useState('');
+  
+  const [playlist, setPlaylist] = useState(''); // State to manage playlist data
+
+  const handleInstallClick = () => {
+    setInstall('install');
+  };
+
+  const handleBellIconClick = () => {
+    setInstall('bellIcon');
+  };
+  const handleprofileClick = () => {
+    setInstall('profile');
+  };
+ 
+   // Function to handle playlist change
+   const handlelibclick = (playlist) => {
+    console.log(playlist)
+    setPlaylist(playlist);
+
+  };
+  const playlistitems = [
+    {
+      img: 'https://i.scdn.co/image/ab67616d00001e02249e235cc514c7071e4bd049',
+      name: 'Aam jahe munde',
+      desc: 'PARDHANE',
+      audio: a1,
+      singer:'ranjit',
+      date:'1 day ago'
+    },
+    {
+      img: 'https://i.scdn.co/image/ab67616d00001e022494fb8ce966d471e74c81da',
+      name: 'Apa fer milanga (Lofi version)',
+      desc: 'Savi kahlon',
+      audio: a2,
+      singer:'kahlon',
+      date:'5 days ago'
+    },
+    
+  ];
   
   return (
     <>
@@ -67,15 +114,19 @@ export default function LHome() {
             style={{ backgroundColor: 'black' }}
           >
             <div className={` me-1 ${Style.pane}`}>
-              <Sidebar />
+              <Sidebar handlelibclick={handlelibclick} />
             </div>
             <div className={`me-1 me-1 ${Style.pane}`}>
-              <Plylist playlistitems={songs} onPlay = {handlePlay} 
-              />
+            {install === 'install' && <InstallApp handleprofileClick={handleprofileClick} handleBellIconClick={handleBellIconClick} />}
+              {install === 'bellIcon' && <BellIcon handleprofileClick={handleprofileClick} handleInstallClick={handleInstallClick} />}
+              {install === 'profile' && <Profile handleInstallClick={handleInstallClick} handleBellIconClick={handleBellIconClick} />}
+              {install === '' &&(playlist ? <LibComp cmp={playlist} playlistitems={playlistitems} handleBellIconClick={handleBellIconClick} /> : <Plylist playlistitems={songs} onPlayPause={handlePlayPause} handleprofileClick={handleprofileClick} handleInstallClick={handleInstallClick} handleBellIconClick={handleBellIconClick}  /> )}
+     
+            {/* <Plylist playlistitems={songs} onPlayPause={handlePlayPause}  /> */}
             </div>
           </SplitPane>
         </Container>
-        <Bottom audioPath={audioPath} />
+        <Bottom audioPath={audioPath}  isPlaying ={isPlaying}  onPlayPause={handlePlayPause}  />
       </div>
     </>
   );
