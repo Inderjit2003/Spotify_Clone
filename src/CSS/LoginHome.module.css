@@ -1,10 +1,8 @@
 .bottom{
 position: fixed;
 background: #000;
-height: 3.5rem;
-left: 0;
-bottom: 3vh;
-margin-bottom: 8px;
+left: 3vh;
+bottom: 1.5vh;
 }.searcdiv{
   padding: 12px;
   position: relative;
@@ -137,7 +135,7 @@ margin-bottom: 8px;
       }
       .scrollStart{
         overflow-y: scroll;
-        height: 66vh;
+        height: 73vh;
         }
         .scrollStart::-webkit-scrollbar{
         width: 12px;

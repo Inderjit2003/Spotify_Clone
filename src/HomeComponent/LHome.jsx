@@ -14,6 +14,7 @@ import a2 from '../assets/music/Apa Fer Milange.mp3';
 import a3 from '../assets/music/Bhali Kare Kartar.mp3';
 import a4 from '../assets/music/Chal Jindiye.mp3';
 import a5 from '../assets/music/My Pride.mp3';
+import Playlist from './Playlist';
 export default function LHome() {
   const songs = [
     {
@@ -52,7 +53,160 @@ export default function LHome() {
       color:'#72100e'
     },
   ];
-
+  const artist=[
+    {
+      img:'https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca',
+      name:'Pritam',
+    desc:'Artist'
+  },
+  {
+    img:'https://i.scdn.co/image/ab676161000051740261696c5df3be99da6ed3f3',
+    name:'Arijit Singh',
+    desc:'Artist'
+  },
+  {
+    img:'https://i.scdn.co/image/ab67616100005174b19af0ea736c6228d6eb539c',
+    name:'A.R. Rahman',
+    desc:'Artist'
+  },
+  {
+    img:'https://i.scdn.co/image/ab676161000051746220fc5e958ab498b96f5835',
+    name:'Vishal Mishra',
+    desc:'Artist'
+  },
+  {
+    img:'https://i.scdn.co/image/ab67616100005174fc7c542c04b5f7dc8f1b1c16',
+    name:'Anirudh Ravichander',
+    desc:'Artist'
+  },
+  {
+    img:'https://i.scdn.co/image/ab6761610000517490b6c3d093f9b02aad628eaf',
+    name:'Vishal-Shekhar',
+    desc:'Artist'
+  },
+  ,
+  {
+    img:'https://i.scdn.co/image/ab67616100005174b19af0ea736c6228d6eb539c',
+    name:'A.R. Rahman',
+    desc:'Artist'
+  },
+  {
+    img:'https://i.scdn.co/image/ab676161000051746220fc5e958ab498b96f5835',
+    name:'Vishal Mishra',
+    desc:'Artist'
+  },
+  {
+    img:'https://i.scdn.co/image/ab67616100005174fc7c542c04b5f7dc8f1b1c16',
+    name:'Anirudh Ravichander',
+    desc:'Artist'
+  },
+  {
+    img:'https://i.scdn.co/image/ab6761610000517490b6c3d093f9b02aad628eaf',
+    name:'Vishal-Shekhar',
+    desc:'Artist'
+  }
+  ]
+  const album=[{
+    img:'https://i.scdn.co/image/ab67616d00001e025f3ede47954a93aa03efe5f9',
+    name:'ANIMAL',
+    desc:'Manan Bhardwaj, Vishal Mishra, Jaani '
+  },
+  {
+    img:'https://i.scdn.co/image/ab67616d00001e021a8c4618eda885a406958dd0',
+    name:'Still Rollin',
+    desc:'Shubh'
+  },
+  {
+    img:'https://i.scdn.co/image/ab67616d00001e021d1cc2e40d533d7bcebf5dae',
+    name:'Moosetape',
+    desc:'Sidhu Moose Wala'
+  },
+  {
+    img:'https://i.scdn.co/image/ab67616d00001e02cb2f9520171129a3df7a241a',
+    name:'Ghost',
+    desc:'Diljit Dosanjh'
+  },
+  {
+    img:'https://i.scdn.co/image/ab67616d00001e02bb25239324c4e16ae01fda36',
+    name:'Making Memories',
+    desc:'Karan Aujla,Ikky'
+  },
+  {
+    img:'https://i.scdn.co/image/ab67616d00001e02ecdddbfde15bc99b5bedffd4',
+    name:'Angrej',
+    desc:'Amrinder Gill'
+  } ,
+  {
+    img:'https://i.scdn.co/image/ab67616d00001e021a8c4618eda885a406958dd0',
+    name:'Still Rollin',
+    desc:'Shubh'
+  },
+  {
+    img:'https://i.scdn.co/image/ab67616d00001e021d1cc2e40d533d7bcebf5dae',
+    name:'Moosetape',
+    desc:'Sidhu Moose Wala'
+  },
+  {
+    img:'https://i.scdn.co/image/ab67616d00001e02cb2f9520171129a3df7a241a',
+    name:'Ghost',
+    desc:'Diljit Dosanjh'
+  },
+  {
+    img:'https://i.scdn.co/image/ab67616d00001e02bb25239324c4e16ae01fda36',
+    name:'Making Memories',
+    desc:'Karan Aujla,Ikky'
+  }   ]
+  const radio=[{
+    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4YRxDV8wJFPHPTeXepOstw/en-GB',
+    name:'Arijit Singh Radio',
+    desc:'With Nwha Kakkar, Pritam, KK and more'
+  },
+  {
+    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/2FKWNmZWDBZR4dE5KX4plR/en-GB',
+    name:'Diljit dosanjh Radio',
+    desc:'With Garry Sandhu, Ranjit Bawa, Amrinder Gill and more'
+  },
+  {
+    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4K6blSRoklNdpw4mzLxwfn/en-GB',
+    name:'Kumar Sanu Radio',
+    desc:'With Udit Narayan, Alka Yagnik, Anuradha Paudwal and more'
+  },
+  {
+    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4PULA4EFzYTrxYvOVlwpiQ/en-GB',
+    name:'Sidhu Moose Wala Radio',
+    desc:'With Ammy Virk, Amrit Maan, Karan Aujla and more'
+  },
+  {
+    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4fEkbug6kZzzJ8eYX6Kbbp/en-GB',
+    name:'KK Radio',
+    desc:'With Mohit chauhan, Ankit Tiwari, Javed Ali and more'
+  },
+  {
+    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/5r3wPya2PpeTTsXsGhQU8O/en-GB',
+    name:'Shubh Radio',
+    desc:'With AP Dhillon, Gurinder Gill, Ikky and more'
+  } ,
+  {
+    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4K6blSRoklNdpw4mzLxwfn/en-GB',
+    name:'Kumar Sanu Radio',
+    desc:'With Udit Narayan, Alka Yagnik, Anuradha Paudwal and more'
+  },
+  {
+    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4PULA4EFzYTrxYvOVlwpiQ/en-GB',
+    name:'Sidhu Moose Wala Radio',
+    desc:'With Ammy Virk, Amrit Maan, Karan Aujla and more'
+  },
+  {
+    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4fEkbug6kZzzJ8eYX6Kbbp/en-GB',
+    name:'KK Radio',
+    desc:'With Mohit chauhan, Ankit Tiwari, Javed Ali and more'
+  },
+  {
+    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/5r3wPya2PpeTTsXsGhQU8O/en-GB',
+    name:'Shubh Radio',
+    desc:'With AP Dhillon, Gurinder Gill, Ikky and more'
+  }    ]
+  
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioPath, setAudioPath] = useState(null);
 
@@ -120,9 +274,14 @@ export default function LHome() {
             {install === 'install' && <InstallApp handleprofileClick={handleprofileClick} handleBellIconClick={handleBellIconClick} />}
               {install === 'bellIcon' && <BellIcon handleprofileClick={handleprofileClick} handleInstallClick={handleInstallClick} />}
               {install === 'profile' && <Profile handleInstallClick={handleInstallClick} handleBellIconClick={handleBellIconClick} />}
-              {install === '' &&(playlist ? <LibComp cmp={playlist} playlistitems={playlistitems} handleBellIconClick={handleBellIconClick} /> : <Plylist playlistitems={songs} onPlayPause={handlePlayPause} handleprofileClick={handleprofileClick} handleInstallClick={handleInstallClick} handleBellIconClick={handleBellIconClick}  /> )}
+              {/* {install === '' &&(playlist ? <LibComp cmp={playlist} playlistitems={playlistitems} handleBellIconClick={handleBellIconClick} /> : <Plylist playlistitems={songs} onPlayPause={handlePlayPause} handleprofileClick={handleprofileClick} handleInstallClick={handleInstallClick} handleBellIconClick={handleBellIconClick}  /> )} */}
      
             {/* <Plylist playlistitems={songs} onPlayPause={handlePlayPause}  /> */}
+
+          {install === '' &&(playlist ? <LibComp cmp={playlist} playlistitems={playlistitems} handleBellIconClick={handleBellIconClick} /> :<Playlist playlistitems={songs}
+          radio={radio} album={album} artist={artist} onPlayPause={handlePlayPause} handleprofileClick={handleprofileClick} handleInstallClick={handleInstallClick} handleBellIconClick={handleBellIconClick}  />
+ )}
+              
             </div>
           </SplitPane>
         </Container>

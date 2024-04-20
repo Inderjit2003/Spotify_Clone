@@ -19,8 +19,15 @@ export default function HomeARPM({items , onPlayPause}) {
     };
   
     const handlePlayPause = (path) => {
-        setIsPlaying(!isPlaying); // Toggle play/pause state
-        onPlay(audioPath); // Notify parent component about play/pause action    
+        // setIsPlaying(!isPlaying); // Toggle play/pause state
+        // onPlayPause(audioPath); // Notify parent component about play/pause action    
+        if(isPlaying){
+            setIsPlaying(false);
+            onPlayPause(null);
+        }else{
+            setIsPlaying(true);
+            onPlayPause(audioPath)
+        }
     };
   return (
 <div>

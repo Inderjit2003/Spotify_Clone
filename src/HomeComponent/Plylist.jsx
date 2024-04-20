@@ -12,8 +12,8 @@ export default function Plylist({ playlistitems , onPlayPause ,handleInstallClic
       <PlylistNavbar handleInstallClick={handleInstallClick} handleprofileClick={handleprofileClick} handleBellIconClick={handleBellIconClick} />
     
         <div className={`mt-2  ${Style.bg}`}>
-        {/* <HomeARPM items={playlistitems} onPlayPause={onPlayPause} /> */}
-              <MidPlylist  items={playlistitems} onPlay = {onPlayPause}  />
+        <HomeARPM items={playlistitems} onPlayPause={onPlayPause} />
+              {/* <MidPlylist  items={playlistitems} onPlay = {onPlayPause}  /> */}
         </div>
       </Card>
     </div>
