@@ -5,11 +5,13 @@ import { Button, Card } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Style from '../CSS/Home.module.css'
-import { Link } from 'react-router-dom'
+import { Link ,useNavigate} from 'react-router-dom'
 
 
 
 export default function Signup() {
+
+
 //Showing Password
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -26,15 +28,40 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  const navigate = useNavigate();
+  
   const [formErrors , setFormErrors] = useState({});
   const [isSubmit , setIsSubmit] = useState(false);
+  const formsubmission = () => {
+    fetch("http://localhost:3000/signup", {
+      method: "post",
+      headers:{
+        "Content-Type": "application/json",
+      },
+      body : JSON.stringify({username,email,password}),
+    }).then((res) => {
+      res.json().then((data) => {
+        console.log(data);
+        // data.email == email && data.password == password 
+        if(data ) {
+          navigate("/Home");
+        }else{
+          alert("User Already exists");
+          // navigate("/");
+        }
+      })
+    })
 
+    console.log("Email is =" + email);
+    console.log("Password is = " + password);
+
+  };
   const handleSubmit = async (e) =>{
     e.preventDefault();
     const errors = validateForm();
     if(Object.keys(errors).length === 0){
-     window.location.href = '/';
+      formsubmission();
+    //  window.location.href = '/';
     }else{
       setFormErrors(errors);
     }
@@ -48,8 +75,8 @@ export default function Signup() {
     else if (password.length < 8) {
       errors.password = 'Password must be at least 8 characters';
      } 
-     else if (!/(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]/.test(password)) {
-      errors.password = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';}
+    //  else if (!/(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]/.test(password)) {
+    //   errors.password = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';}
       if(password !== confirmPassword) {errors.confirmPassword = 'Passwords do not match';}
       return errors;
   };

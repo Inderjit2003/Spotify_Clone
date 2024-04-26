@@ -106,9 +106,8 @@ const handleMouseLeave = (event) => {
             </Col>
            </Row>
           
-          
-           <div className={libtable.tableContainer}>
-           <Table style={{ backgroundImage: `linear-gradient(180deg, #282828, #121212) `}} hover variant='dark' className={` ${libtable.table}`}>
+  <div className={libtable.tableContainer}>
+   <Table style={{ backgroundImage: `linear-gradient(180deg, #282828, #121212) `}} hover variant='dark' className={` ${libtable.table}`}>
   <thead className="text-muted">
     <tr style={{ backgroundColor: 'red' }}>
       <th scope="col">#</th>

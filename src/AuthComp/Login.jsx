@@ -2,34 +2,59 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Card } from 'react-bootstrap';
 import Style from '../CSS/Home.module.css';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import LsNavbar from './LsNavbar'
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [formValues, setFormValues] = useState({ email: '', password: '' });
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
+  const formsubmission = () => {
+    fetch('http://localhost:3000/login', {
+      method: "post",
+      headers:{
+        "Content-Type": "application/json",
+      },
+      body : JSON.stringify({email,password}),
+    }).then((res) => {
+      res.json().then((data) => {
+        console.log(data);
+        // data.email == email && data.password == password 
+        if(data == true ) {
+          navigate("/Home");
+        }
+      })
+    })
+
+    console.log("Email is =" + email);
+    console.log("Password is = " + password);
+
   };
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post('http://localhost:3000/login', formValues);
-      console.log(response.data); // Handle response data (e.g., store token in localStorage)
-      // Redirect or perform actions based on successful login
-    } catch (error) {
-      console.error(error);
-      // Handle login error (e.g., display error message)
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Page clicked");
+    formsubmission();
   };
+
+  // const handleLogin = async () => {
+  //   try {
+  //     const response = await axios.post('http://localhost:3000/login', formValues);
+  //     console.log(response.data); // Handle response data (e.g., store token in localStorage)
+  //     // Redirect or perform actions based on successful login
+  //   } catch (error) {
+  //     console.error(error);
+  //     // Handle login error (e.g., display error message)
+  //   }
+  // };
 
   return (
     <div className={`${Style.bgls}`}>
@@ -50,9 +75,10 @@ export default function Login() {
                   type='email'
                   placeholder='emailID'
                   className={`form-label`}
-                  value={formValues.email}
-                  onChange={handleChange}
-                  name='email'
+                  onChange={(value) => {
+                    console.log(value.target.value);
+                    setEmail(value.target.value);
+                  }} 
                   id='email'
                   required
                 />
@@ -69,9 +95,10 @@ export default function Login() {
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Password"
                   className={`form-label`}
-                  name='password'
-                  onChange={handleChange}
-                  value={formValues.password}
+                  onChange={(value) => {
+                    console.log(value.target.value);
+                    setPassword(value.target.value);
+                  }}
                   id="Password"
                   required
                 />
@@ -89,8 +116,9 @@ export default function Login() {
             <Button
               className={`rounded-pill my-4 mt-5 fw-semibold ${Style.button}`}
               style={{ backgroundColor: '#1ed760', borderColor: '#1ed760', width: '25rem', color: 'black' }}
+              onClick={handleSubmit}
               // onClick={handleLogin} // Call handleLogin function on button click
-              href='/Home'
+             
             >
               Login In
             </Button>

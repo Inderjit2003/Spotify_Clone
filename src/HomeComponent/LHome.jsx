@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useRef } from 'react';
+import React, { useEffect, useState ,useRef, useContext } from 'react';
 import SplitPane from 'react-split-pane';
 import Sidebar from './Sidebar';
 import Plylist from './Plylist';
@@ -15,7 +15,9 @@ import a3 from '../assets/music/Bhali Kare Kartar.mp3';
 import a4 from '../assets/music/Chal Jindiye.mp3';
 import a5 from '../assets/music/My Pride.mp3';
 import Playlist from './Playlist';
+import songContext from '../contexts/songContext';
 export default function LHome() {
+
   const songs = [
     {
       img_src: 'https://i.scdn.co/image/ab67616d00001e02d6ae8f55846c610a0b112960',
@@ -57,17 +59,19 @@ export default function LHome() {
     {
       img:'https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca',
       name:'Pritam',
-    desc:'Artist'
+    desc:'Artist',
+   
   },
   {
     img:'https://i.scdn.co/image/ab676161000051740261696c5df3be99da6ed3f3',
     name:'Arijit Singh',
-    desc:'Artist'
+    desc:'Verified Artist'
   },
   {
     img:'https://i.scdn.co/image/ab67616100005174b19af0ea736c6228d6eb539c',
     name:'A.R. Rahman',
-    desc:'Artist'
+    desc:'Verified Artist',
+    bg:'https://www.hitbrother.com/wp-content/uploads/2020/07/ar_rahman-1024x576.jpg'
   },
   {
     img:'https://i.scdn.co/image/ab676161000051746220fc5e958ab498b96f5835',
@@ -258,7 +262,7 @@ export default function LHome() {
   
   return (
     <>
-      <div className='container'>
+      <div className='container '>
         <Container className={`${Style.container}`}>
           <SplitPane
             split='vertical'
@@ -278,14 +282,15 @@ export default function LHome() {
      
             {/* <Plylist playlistitems={songs} onPlayPause={handlePlayPause}  /> */}
 
-          {install === '' &&(playlist ? <LibComp cmp={playlist} playlistitems={playlistitems} handleBellIconClick={handleBellIconClick} /> :<Playlist playlistitems={songs}
+          {install === '' &&(playlist ? <LibComp cmp={playlist} playlistitems={playlistitems} handleBellIconClick={handleBellIconClick} /> :
+          <Playlist playlistitems={songs}
           radio={radio} album={album} artist={artist} onPlayPause={handlePlayPause} handleprofileClick={handleprofileClick} handleInstallClick={handleInstallClick} handleBellIconClick={handleBellIconClick}  />
  )}
               
             </div>
           </SplitPane>
         </Container>
-        <Bottom audioPath={audioPath}  isPlaying ={isPlaying}  onPlayPause={handlePlayPause}  />
+        <Bottom audioPath={audioPath}  isPlaying ={isPlaying}  onPlayPause={handlePlayPause} playlistitems={playlistitems}  />
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PlylistNavbar from './PlylistNavbar';
 import MidPlylist from './MidPlylist';
 import HomeARPM from './HomeARPM';
@@ -14,8 +14,14 @@ import img1 from '../assets/logo.svg'
 import { Howl, Howler } from 'howler';
 import SongPlay from './SongPlay';
 import AlbumPlay from './AlbumPlay';
+import songContext from '../contexts/songContext';
+import ArtistPlay from './ArtistPlay';
+import RadioPlay from './RadioPlay';
 
 export default function Playlist({ playlistitems, radio , album , artist, handleBellIconClick, handleInstallClick, handleprofileClick }) {
+
+
+
     const [showDropdown, setShowDropdown] = useState(false);
     const [artistHoveredIndex, setArtistHoveredIndex] = useState(null);
     const [albumHoveredIndex, setAlbumHoveredIndex] = useState(null);
@@ -59,38 +65,51 @@ const [isPlaying, setIsPlaying] = useState(false);
 const [audio, setAudio] = useState(null);
 
 const handleCardClick = (index) => {
-    if (selectedCardIndex === index) {
-        // If the same card is clicked again, deselect it
+    //   setCurrentSong(playlistitems[index]);
+      setSelectedCardIndex(index);
+    // if (selectedCardIndex === index) {
+    //     // If the same card is clicked again, deselect it
+    //     setSelectedCardIndex(null);
+    // } else {
+    //     setCurrentSong(playlistitems[index]);
+    //     setSelectedCardIndex(index);
+     
 
-        setSelectedCardIndex(null);
-    } else {
-        setSelectedCardIndex(index);
-        setIsPlaying(!isPlaying);
-        setAudioPath(selectedItem.src);
-        onPlay(selectedItem.src);
-    }
+    // }
 };
+const [SelectedArtistIndex , setSelectedArtistIndex] = useState(null);
+const handleArtistClick =(index) => {
+    setSelectedArtistIndex(index);
+};
+const [SelectedAlbumIndex , setSelectedAlbumIndex] = useState(null);
+const handleAlbumClick =(index) =>{
+    setSelectedAlbumIndex(index);
+};
+const [SelectedRadioIndex , setSelectedRadioIndex] = useState(null);
+const handleRadioClick = (index) =>{
+    setSelectedRadioIndex(index);
+}
 
 
   const onPlayPause = (index) => {
     if (selectedCardIndex === index && isPlaying) {
-        audio.pause();
+        // audio.pause();
         setIsPlaying(false);
     } else {
-        const selectedItem = playlistitems[index];
-        setSelectedCardIndex(index);
-        if (audio) {
-            audio.stop();
-        }
-        const newAudio = new Howl({
-            src: [selectedItem.src],
-            onend: () => {
-                setIsPlaying(false);
-                setSelectedCardIndex(null);
-            },
-        });
-        setAudio(newAudio);
-        newAudio.play();
+        // const selectedItem = playlistitems[index];
+        // setSelectedCardIndex(index);
+        // if (audio) {
+        //     audio.stop();
+        // }
+        // const newAudio = new Howl({
+        //     src: [selectedItem.src],
+        //     onend: () => {
+        //         setIsPlaying(false);
+        //         setSelectedCardIndex(null);
+        //     },
+        // });
+        // setAudio(newAudio);
+        // newAudio.play();
         setIsPlaying(true);
     }
 };
@@ -185,13 +204,13 @@ const handleCardClick = (index) => {
       </Container>
      
         </Navbar>
-        <Row className='mx-2 mb-1'>
+        {/* <Row className='mx-2 mb-1'>
           <Col>
           <Button variant="light"  className='mx-1 btn-sm' style={{borderRadius:'25px'}}>All</Button>
           <Button variant="dark" className='mx-1 btn-sm' style={{borderRadius:'25px'}}>Music</Button>
           <Button variant="dark" className='mx-1 btn-sm' style={{borderRadius:'25px'}}>Podcasts</Button>
           </Col>
-        </Row>
+        </Row> */}
         </div>
         <div className={`mt-2 ${Style.bg}`}>
         <div>
@@ -201,7 +220,7 @@ const handleCardClick = (index) => {
                                                    {/* Section for Artist */}
      {/* ---------------------------------------------------------------------------------------------------------------- */}
                 <section className="mt-2">      
-             
+                {!SelectedArtistIndex ? (
                 <div>
                 <Row
                     className="justify-content-between align-items-center p-2"
@@ -232,7 +251,7 @@ const handleCardClick = (index) => {
                                  onMouseEnter={() => handleMouseEnter(index, 'artist')}
                                  onMouseLeave={() => handleMouseLeave('artist')}
                                  className={`mb-2 p-2 border-0`}
-                                 onClick={() => handleCardClick(index)}
+                                 onClick={() => handleArtistClick(index)}
                                  style={{
                                      height: '14rem',
                                      backgroundColor: artistHoveredIndex === index ? 'rgb(82, 82, 82)' : '#121212',
@@ -271,12 +290,16 @@ const handleCardClick = (index) => {
                     ))}
                 </Row>
                 </div>
+                ) : (
+                    <ArtistPlay artist={artist} index={SelectedArtistIndex} />
+                )}
                     </section>
      {/* ---------------------------------------------------------------------------------------------------------------- */}
                                                    {/* Section for Album */}
      {/* ---------------------------------------------------------------------------------------------------------------- */}
 
      <section className='foralbum'>
+    {!SelectedAlbumIndex ? (
         <div>
             <Row className="justify-content-between align-items-center mt-4">
             <Col xs={12} sm={8}>
@@ -300,7 +323,7 @@ const handleCardClick = (index) => {
                         <Card
                             onMouseEnter={() => handleMouseEnter(index, 'album')}
                             onMouseLeave={() => handleMouseLeave('album')}
-                            className={`mb-2 p-2 border-0`}   onClick={() => handleCardClick(index)}
+                            className={`mb-2 p-2 border-0`}   onClick={() => handleAlbumClick(index)}
                             style={{height:'16rem', backgroundColor: albumHoveredIndex === index ? 'rgb(82, 82, 82)' : '#121212', cursor: 'pointer' }}
                         >
                             <Card.Img variant="top" src={value.img} />
@@ -330,12 +353,16 @@ const handleCardClick = (index) => {
                 ))}
             </Row>
        
-        </div>   
+        </div> 
+        ) : (
+            <AlbumPlay album={album} index={SelectedArtistIndex} />
+        )}  
     </section> 
      {/* ---------------------------------------------------------------------------------------------------------------- */}
                                                    {/* Section for Radio */}
      {/* ---------------------------------------------------------------------------------------------------------------- */}
      <section className='forradio'>
+        {!SelectedRadioIndex ? (
         <div>
             <Row className="justify-content-between align-items-center mt-4">
             <Col xs={12} sm={8}>
@@ -359,7 +386,7 @@ const handleCardClick = (index) => {
                         <Card
                             onMouseEnter={() => handleMouseEnter(index, 'radio')}
                             onMouseLeave={() => handleMouseLeave('radio')}
-                            className={`mb-2 p-2 border-0`}   onClick={() => handleCardClick(index)}
+                            className={`mb-2 p-2 border-0`}   onClick={() => handleRadioClick(index)}
                             style={{height:'16rem', backgroundColor: radioHoveredIndex === index ? 'rgb(82, 82, 82)' : '#121212', cursor: 'pointer' }}
                         >
                             <Card.Img variant="top" src={value.img} />
@@ -389,6 +416,9 @@ const handleCardClick = (index) => {
                 ))}
             </Row>
         </div>
+        ) : (
+           <RadioPlay radio={radio} index={SelectedRadioIndex}/>
+        )}
     </section> 
       {/* ---------------------------------------------------------------------------------------------------------------- */}
                                                    {/* Section for Playlist */}
@@ -415,7 +445,7 @@ const handleCardClick = (index) => {
         </Row>
             <Row xs={1} md={2} lg={3} xl={6} className="g-0 ">
                 {playlistitems.slice(0,6).map((value, index) => (
-                    <Col key={index}>       
+                    <Col key={index} >       
                         <Card
                             onMouseEnter={() => handleMouseEnter(index, 'playlist')}
                             onMouseLeave={() => handleMouseLeave('playlist')}
@@ -430,15 +460,17 @@ const handleCardClick = (index) => {
                                     </div>
                             
                             
-                                {playlistHoveredIndex === index && (
+                                {/* {playlistHoveredIndex === index && (
                                     <div className={style.play}  onClick={() => {onPlayPause(index)}}>
-                                    {selectedCardIndex === index && isPlaying ? (
+                                    {
+                                    // selectedCardIndex === index &&
+                                     isPlaying ? (
        <FontAwesomeIcon icon={faPause} />
    ) : (
        <FontAwesomeIcon icon={faPlay} />
    )}
                                     </div>
-                                )}
+                                )} */}
                             
                         </Card>
                     </Col>
@@ -448,6 +480,7 @@ const handleCardClick = (index) => {
         </div> 
          ) : (
        <SongPlay items={playlistitems} index={selectedCardIndex} />
+    
          )}
     </section> 
                 </div>

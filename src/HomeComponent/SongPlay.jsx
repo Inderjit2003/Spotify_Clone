@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState , useEffect, useContext } from 'react';
 import { Col, Container, Row, Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
@@ -7,37 +7,57 @@ import Artist from '../assets/svg/martist.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Howl, Howler } from 'howler';
+import songContext from '../contexts/songContext';
 
-export default function SongPlay({items , index}) {
+export default function SongPlay(
+    {items , index}
+) {
     const [addFavourite, setAddFavourite] = useState(false);
     const selectedItem = items[index];
     const [isPlaying, setIsPlaying] = useState(false);
     const [audio, setAudio] = useState(null);
- 
-    useEffect(() => {
-        const newAudio = new Howl({
-            src: [selectedItem.src],
-            onplay: () => setIsPlaying(true),
-            onpause: () => setIsPlaying(false),
-            onend: () => setIsPlaying(false),
-        });
-        setAudio(newAudio);
 
-        return () => {
-            // Clean up Howl instance on component unmount
-            if (audio) {
-                audio.unload();
-            }
-        };
-    }, [selectedItem]);
+    const {currentSong,setCurrentSong ,isPaused ,setIsPaused , soundPlayed , setSoundPlayed}= useContext(songContext);
+    console.log(currentSong);
+
+    // useEffect(() => {
+    //     const newAudio = new Howl({
+    //         src: [selectedItem.src],
+    //         onplay: () => setIsPlaying(true),
+    //         onpause: () => setIsPlaying(false),
+    //         onend: () => setIsPlaying(false),
+    //     });
+    //     setAudio(newAudio);
+
+    //     return () => {
+    //         // Clean up Howl instance on component unmount
+    //         if (audio) {
+    //             audio.unload();
+    //         }
+    //     };
+    // }, [selectedItem]);
+
+    // const handlePlayPause = () => {
+    // setCurrentSong(selectedItem)
+    //     if (audio) {
+    //         if (isPlaying) {
+    //             audio.pause();
+    //         } else {
+    //             audio.play();
+    //         }
+    //         setIsPaused(isPlaying)
+    //     }
+    // };
 
     const handlePlayPause = () => {
-        if (audio) {
-            if (isPlaying) {
-                audio.pause();
-            } else {
-                audio.play();
-            }
+        setIsPlaying(!isPlaying); // Toggle play/pause state
+        setCurrentSong(selectedItem); // Set current song if playing, else set to null
+        if(isPlaying){
+            setIsPaused(true);
+            
+        }else{
+setIsPaused(false);
+
         }
     };
     const handleAddFavourite = () => {
@@ -127,6 +147,8 @@ export default function SongPlay({items , index}) {
                     <Col className='mt-4'>
                     <div>
                          <span className='fs-5 fw-semibold ms-4'>Lyrics</span>
+                         <span>Chhoti umraan di akh, dardi ae
+Saada vichoda dhadkanan vich gardi ae</span>
                          <span>{selectedItem.lyrics}</span>
                          </div>
                     </Col> 
@@ -149,7 +171,7 @@ export default function SongPlay({items , index}) {
             </Container>
             </div>
                     {/* ToastContainer for displaying toasts */}
-                    <ToastContainer position="bottom-center" animation='true' autoClose={500} hideProgressBar='true' />
+                    <ToastContainer position="bottom-center" animation='true' autoClose={500} hideProgressBar='true' /> 
         </div>
     </div>
   )
