@@ -277,9 +277,10 @@ const handleRadioClick = (index) =>{
                   <h5 className="card-title">{item.title}</h5>
                   <p className="card-text">{item.artist}</p>
                   <p className="card-text">{item.album}</p>
-                  <button onClick={() => onPlayPause(index)} className="btn btn-primary">
-                    {selectedCardIndex === index && isPlaying ? 'Pause' : 'Play'}
-                  </button>
+                  <audio controls>
+                                         <source src={item.audioURL} type={item.
+mimetype} />
+                                      </audio>
                 </div>
               </div>
             </div>
