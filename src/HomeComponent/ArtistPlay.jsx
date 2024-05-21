@@ -22,7 +22,7 @@ const handleMouseLeave = (event) => {
         <Container >
                 <Row>  
                     <Col className='m-4' xs={3}  >
-                        <img src={selectedItem.img} alt={selectedItem.title} className='img-thumbnail rounded' style={{ width: '35vh' }} />
+                        <img src={selectedItem.img}  className='img-thumbnail rounded' style={{ width: '35vh' }} />
                     </Col>
                     <Col className='text-white ms-2 ' style={{ marginTop: '6%' }} >
                     <div className='mt-3'> 
@@ -48,7 +48,7 @@ const handleMouseLeave = (event) => {
     </tr>
   </thead>
   <tbody>
-    {artist.map((value, index) => (
+    {artist.slice(0,5).map((value, index) => (
       <tr key={index}>
         <th scope="row" className={`${libtable.play}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{index + 1}</th>
         <td>

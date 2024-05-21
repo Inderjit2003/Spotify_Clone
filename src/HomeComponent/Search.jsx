@@ -50,7 +50,29 @@ export default function Search() {
       color:'#537556'
     },
   ];
+  
+  const [install, setInstall] = useState('');
+  
+  const handleInstallClick = () => {
+    setInstall('install');
+  };
 
+  const handleBellIconClick = () => {
+    setInstall('bellIcon');
+  };
+  const handleprofileClick = () => {
+    setInstall('profile');
+  };
+  
+  const [playlist, setPlaylist] = useState(''); // State to manage playlist data
+
+  const handlelibclick = (playlist) => {
+    console.log(playlist)
+    setPlaylist(playlist);
+
+  };
+
+   
   return (
     <>
       <div className='container'>
@@ -63,17 +85,23 @@ export default function Search() {
             style={{ backgroundColor: 'black' }}
           >
             <div className={` me-1 ${Style.pane}`}>
-              <Sidebar />
+              <Sidebar  handlelibclick={handlelibclick} />
             </div>
 
             
             <div className={`me-1 ${Style.pane}`}>
-             <SearchHere items ={songs} />
+             {/* <SearchHere items ={songs} /> */}
+             {install === 'install' && <InstallApp handleprofileClick={handleprofileClick} handleBellIconClick={handleBellIconClick} />}
+              {install === 'bellIcon' && <BellIcon handleprofileClick={handleprofileClick} handleInstallClick={handleInstallClick} />}
+              {install === 'profile' && <Profile handleInstallClick={handleInstallClick} handleBellIconClick={handleBellIconClick} />}
+              
+             {install === '' && (<SearchHere items ={songs} handleprofileClick={handleprofileClick} handleInstallClick={handleInstallClick} handleBellIconClick={handleBellIconClick} />)}
             </div>
           </SplitPane>
         </Container>
 
       </div>
+            <Bottom />
     </>
   );
 }

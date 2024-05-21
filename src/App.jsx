@@ -11,10 +11,13 @@ import ArtistPlay from './HomeComponent/ArtistPlay.jsx'
 import songContext from './contexts/songContext.js'
 import Playlist from './HomeComponent/Playlist.jsx'
 import HomeARPM from './HomeComponent/HomeARPM.jsx'
+import Mid from './yy/Mid.jsx'
 export default function App() {
   const [currentSong , setCurrentSong ] =useState(null);
   const [soundPlayed,setSoundPlayed] = useState(null);
   const [isPaused , setIsPaused] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+
   return (
     <>
     <div>
@@ -24,11 +27,11 @@ export default function App() {
      <Routes>
         <Route path='/' element = {<Home />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
      
       
         <Route path ="/Home" element = { <LHome />} />
-         <Route path="/Playlist" element={<Playlist />} />
+         <Route path="/Playlist" element={<Playlist setIsLoggedIn= {setIsLoggedIn} />} />
         <Route path='/Search' element={<Search /> } />
       
         <Route path='/Hello' element={<Hello /> } />
@@ -36,7 +39,7 @@ export default function App() {
         <Route path='/Album' element ={<AlbumPlay />} />
         <Route path='/Artist' element ={<ArtistPlay />} />
         <Route path='/sf' element={<HomeARPM />} />
-
+        <Route path='/midupload' element={<Mid />} />
     </Routes>
     </songContext.Provider>
      

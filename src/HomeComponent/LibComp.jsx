@@ -1,4 +1,4 @@
-import React ,{useState} from 'react'
+import React ,{useEffect, useState} from 'react'
 import { Button, Card, Col, Container, Row, Table } from 'react-bootstrap'
 import Style from '../CSS/Home.module.css'
 import Nav from 'react-bootstrap/Nav';
@@ -23,9 +23,29 @@ const handleMouseLeave = (event) => {
   event.target.innerText = originalContent; // Restore the original content when not hovered
 };
 
+const [showFavourite, setShowFavourite] = useState([]);
+useEffect(() => {
+  const fetchFavouriteSongs = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/favorites");
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const data = await response.json();
+      setShowFavourite(data);
+    } catch (error) {
+      console.log('Error fetching favourite songs', error);
+    }
+  };
+  fetchFavouriteSongs();
+}, []);
 
+// useEffect(() => {
+//   console.log('Received data Stored in variable:', showFavourite);
+// }, [showFavourite]);
 
-  return (
+console.log('Rendering showFavourite:', showFavourite); 
+return (
     <div className='mx-1 py-2'>
     <Card  style={{backgroundColor:'#121212',border:'none'}}>
     <div className='mx-1 '>    
@@ -88,9 +108,6 @@ const handleMouseLeave = (event) => {
      
 </Navbar>
 </div>
- 
-
-
     <div className={Style.scrollInstallApp}
      style={{ }}>
         
@@ -105,10 +122,12 @@ const handleMouseLeave = (event) => {
             <h1 style={{fontSize:'12vh', fontWeight:'700'}}>{cmp.name}</h1>
             </Col>
            </Row>
-          
+
   <div className={libtable.tableContainer}>
    <Table style={{ backgroundImage: `linear-gradient(180deg, #282828, #121212) `}} hover variant='dark' className={` ${libtable.table}`}>
   <thead className="text-muted">
+
+
     <tr style={{ backgroundColor: 'red' }}>
       <th scope="col">#</th>
       <th scope="col">Title</th>
@@ -118,22 +137,17 @@ const handleMouseLeave = (event) => {
     </tr>
   </thead>
   <tbody>
-    {playlistitems.map((value, index) => (
-      <tr key={index}>
-        <th scope="row" className={`${libtable.play}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{index + 1}</th>
-        <td>
-          <a href='/home' className={`${libtable.a}`}>{value.name}</a>
-        </td>
-        <td>
-          <a href='/home' className={`${libtable.a}`}>{value.singer}</a>
-        </td>
-        <td>
-          <a href='/home' className={`${libtable.a}`}>{value.desc}</a>
-        </td>
-        <td style={{ color: 'rgba(255, 255, 255, 0.5)' }}>{value.date}</td>
-      </tr>
-    ))}
-  </tbody>
+  {showFavourite.map((song, index) => (
+    <tr key={index}>
+      <th scope='row'>{index + 1}</th>
+      <td>{song.title}</td>
+      <td>{song.artist}</td>
+      <td>{song.album}</td>
+      <td>{song.dateAdded}</td>
+    </tr>
+  ))}
+</tbody>
+
 </Table>
     </div>
            <HomeFooter />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import LsNavbar from './LsNavbar'
 import { Button, Card } from 'react-bootstrap'
@@ -10,7 +10,6 @@ import { Link ,useNavigate} from 'react-router-dom'
 
 
 export default function Signup() {
-
 
 //Showing Password
   const [showPassword, setShowPassword] = useState(false);
@@ -42,11 +41,12 @@ export default function Signup() {
     }).then((res) => {
       res.json().then((data) => {
         console.log(data);
+        alert(data);
         // data.email == email && data.password == password 
         if(data ) {
           navigate("/Home");
         }else{
-          alert("User Already exists");
+          alert(error);
           // navigate("/");
         }
       })
@@ -80,6 +80,7 @@ export default function Signup() {
       if(password !== confirmPassword) {errors.confirmPassword = 'Passwords do not match';}
       return errors;
   };
+
 
 
   return (

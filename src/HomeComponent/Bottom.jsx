@@ -5,8 +5,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import { Col, Container, Row ,Button } from 'react-bootstrap';
 import {Icon} from "@iconify/react";
 import {Howl, Howler} from "howler";
-import audio from '../assets/music/Aam Jahe.mp3'
-
+import audio from '../assets/music/Aam Jahe.mp3';
 import { ToastContainer, toast } from 'react-toastify';
 import songContext from '../contexts/songContext';
 import FormRange from 'react-bootstrap/esm/FormRange';

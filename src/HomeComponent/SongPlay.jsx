@@ -61,11 +61,24 @@ setIsPaused(false);
         }
     };
     const handleAddFavourite = () => {
-        setAddFavourite(!addFavourite)
-        const message = addFavourite ? 'Added to favorites' : ' Removed from favorites';
+        // Toggle the favorite status
+        setAddFavourite(!addFavourite);
+        const message = addFavourite ? 'Removed from favorites' : 'Added to favorites';
         toast.success(message);
+    
+        // Send a POST request to the backend API to add or remove the song from favorites
+        fetch("http://localhost:3000/api/favorites", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ song: selectedItem, isAdd: !addFavourite }), // Use JSON.stringify directly here
+        }).then((res) => {
+            res.json().then((data) => {
+                console.log(data);
+            });
+        });
     };
-  
   return (
     <div>
                 <div style={{backgroundColor:selectedItem.color}} >
@@ -110,7 +123,7 @@ setIsPaused(false);
                                   height: '50px',
                                     }}
                                     onClick={handleAddFavourite}>
-                               {addFavourite ? (
+                               {!addFavourite ? (
                                    <svg
                                        xmlns="http://www.w3.org/2000/svg"
                                        width="40"

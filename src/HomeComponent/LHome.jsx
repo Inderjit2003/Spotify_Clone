@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useRef, useContext } from 'react';
+import React, { useEffect, useState ,useRef,useNavigate, useContext } from 'react';
 import SplitPane from 'react-split-pane';
 import Sidebar from './Sidebar';
 import Plylist from './Plylist';
@@ -18,199 +18,44 @@ import Playlist from './Playlist';
 import songContext from '../contexts/songContext';
 export default function LHome() {
 
-  const songs = [
-    {
-      img_src: 'https://i.scdn.co/image/ab67616d00001e02d6ae8f55846c610a0b112960',
-      title: 'Zindagi',
-      artist: 'Bir Singh',
-      src: a1,
-      color:' #1e3b60'
-    },
-    {
-      img_src: 'https://i.scdn.co/image/ab67616d00001e0284a4d897fd4310573be70012',
-      title: 'Apa fer milanga (Lofi version)',
-      artist: 'Savi kahlon',
-      src: a2,
-      color:'#1e6051'
-    },
-    {
-      img_src: 'https://i.scdn.co/image/ab67616d00001e023180f91f2221f258e5865b1e      ',
-      title: 'Bhale Kare Kartar',
-      artist: 'Bir Singh',
-      src: a3,
-      color:'#333073'
-    },
-    {
-      img_src: 'https://i.scdn.co/image/ab67616d00001e021bbccdf9094270ef73e39b91      ',
-      title: 'Chal jindiye',
-      artist: 'Amrinder Gill',
-      src: a4,
-      color:'#73305b'
-    },
-    {
-      img_src: 'https://i.scdn.co/image/ab67616d00001e020bf67e6f69d194a32295c686',
-      title: 'My Pride',
-      artist: 'Tarsem Jasar',
-      src: a5,
-      color:'#72100e'
-    },
-  ];
-  const artist=[
-    {
-      img:'https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca',
-      name:'Pritam',
-    desc:'Artist',
-   
-  },
-  {
-    img:'https://i.scdn.co/image/ab676161000051740261696c5df3be99da6ed3f3',
-    name:'Arijit Singh',
-    desc:'Verified Artist'
-  },
-  {
-    img:'https://i.scdn.co/image/ab67616100005174b19af0ea736c6228d6eb539c',
-    name:'A.R. Rahman',
-    desc:'Verified Artist',
-    bg:'https://www.hitbrother.com/wp-content/uploads/2020/07/ar_rahman-1024x576.jpg'
-  },
-  {
-    img:'https://i.scdn.co/image/ab676161000051746220fc5e958ab498b96f5835',
-    name:'Vishal Mishra',
-    desc:'Artist'
-  },
-  {
-    img:'https://i.scdn.co/image/ab67616100005174fc7c542c04b5f7dc8f1b1c16',
-    name:'Anirudh Ravichander',
-    desc:'Artist'
-  },
-  {
-    img:'https://i.scdn.co/image/ab6761610000517490b6c3d093f9b02aad628eaf',
-    name:'Vishal-Shekhar',
-    desc:'Artist'
-  },
-  ,
-  {
-    img:'https://i.scdn.co/image/ab67616100005174b19af0ea736c6228d6eb539c',
-    name:'A.R. Rahman',
-    desc:'Artist'
-  },
-  {
-    img:'https://i.scdn.co/image/ab676161000051746220fc5e958ab498b96f5835',
-    name:'Vishal Mishra',
-    desc:'Artist'
-  },
-  {
-    img:'https://i.scdn.co/image/ab67616100005174fc7c542c04b5f7dc8f1b1c16',
-    name:'Anirudh Ravichander',
-    desc:'Artist'
-  },
-  {
-    img:'https://i.scdn.co/image/ab6761610000517490b6c3d093f9b02aad628eaf',
-    name:'Vishal-Shekhar',
-    desc:'Artist'
-  }
-  ]
-  const album=[{
-    img:'https://i.scdn.co/image/ab67616d00001e025f3ede47954a93aa03efe5f9',
-    name:'ANIMAL',
-    desc:'Manan Bhardwaj, Vishal Mishra, Jaani '
-  },
-  {
-    img:'https://i.scdn.co/image/ab67616d00001e021a8c4618eda885a406958dd0',
-    name:'Still Rollin',
-    desc:'Shubh'
-  },
-  {
-    img:'https://i.scdn.co/image/ab67616d00001e021d1cc2e40d533d7bcebf5dae',
-    name:'Moosetape',
-    desc:'Sidhu Moose Wala'
-  },
-  {
-    img:'https://i.scdn.co/image/ab67616d00001e02cb2f9520171129a3df7a241a',
-    name:'Ghost',
-    desc:'Diljit Dosanjh'
-  },
-  {
-    img:'https://i.scdn.co/image/ab67616d00001e02bb25239324c4e16ae01fda36',
-    name:'Making Memories',
-    desc:'Karan Aujla,Ikky'
-  },
-  {
-    img:'https://i.scdn.co/image/ab67616d00001e02ecdddbfde15bc99b5bedffd4',
-    name:'Angrej',
-    desc:'Amrinder Gill'
-  } ,
-  {
-    img:'https://i.scdn.co/image/ab67616d00001e021a8c4618eda885a406958dd0',
-    name:'Still Rollin',
-    desc:'Shubh'
-  },
-  {
-    img:'https://i.scdn.co/image/ab67616d00001e021d1cc2e40d533d7bcebf5dae',
-    name:'Moosetape',
-    desc:'Sidhu Moose Wala'
-  },
-  {
-    img:'https://i.scdn.co/image/ab67616d00001e02cb2f9520171129a3df7a241a',
-    name:'Ghost',
-    desc:'Diljit Dosanjh'
-  },
-  {
-    img:'https://i.scdn.co/image/ab67616d00001e02bb25239324c4e16ae01fda36',
-    name:'Making Memories',
-    desc:'Karan Aujla,Ikky'
-  }   ]
-  const radio=[{
-    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4YRxDV8wJFPHPTeXepOstw/en-GB',
-    name:'Arijit Singh Radio',
-    desc:'With Nwha Kakkar, Pritam, KK and more'
-  },
-  {
-    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/2FKWNmZWDBZR4dE5KX4plR/en-GB',
-    name:'Diljit dosanjh Radio',
-    desc:'With Garry Sandhu, Ranjit Bawa, Amrinder Gill and more'
-  },
-  {
-    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4K6blSRoklNdpw4mzLxwfn/en-GB',
-    name:'Kumar Sanu Radio',
-    desc:'With Udit Narayan, Alka Yagnik, Anuradha Paudwal and more'
-  },
-  {
-    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4PULA4EFzYTrxYvOVlwpiQ/en-GB',
-    name:'Sidhu Moose Wala Radio',
-    desc:'With Ammy Virk, Amrit Maan, Karan Aujla and more'
-  },
-  {
-    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4fEkbug6kZzzJ8eYX6Kbbp/en-GB',
-    name:'KK Radio',
-    desc:'With Mohit chauhan, Ankit Tiwari, Javed Ali and more'
-  },
-  {
-    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/5r3wPya2PpeTTsXsGhQU8O/en-GB',
-    name:'Shubh Radio',
-    desc:'With AP Dhillon, Gurinder Gill, Ikky and more'
-  } ,
-  {
-    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4K6blSRoklNdpw4mzLxwfn/en-GB',
-    name:'Kumar Sanu Radio',
-    desc:'With Udit Narayan, Alka Yagnik, Anuradha Paudwal and more'
-  },
-  {
-    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4PULA4EFzYTrxYvOVlwpiQ/en-GB',
-    name:'Sidhu Moose Wala Radio',
-    desc:'With Ammy Virk, Amrit Maan, Karan Aujla and more'
-  },
-  {
-    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/4fEkbug6kZzzJ8eYX6Kbbp/en-GB',
-    name:'KK Radio',
-    desc:'With Mohit chauhan, Ankit Tiwari, Javed Ali and more'
-  },
-  {
-    img:'https://seeded-session-images.scdn.co/v2/img/122/secondary/artist/5r3wPya2PpeTTsXsGhQU8O/en-GB',
-    name:'Shubh Radio',
-    desc:'With AP Dhillon, Gurinder Gill, Ikky and more'
-  }    ]
-  
+  useEffect(() =>{
+    fetch("http://localhost:3000",{
+      method:'get',
+      credentials: 'include',})
+    .then(res => res.json())
+    .then(data => {
+       console.log(data); // Log the fetched user details
+       // Handle the data as needed, such as updating state to display user details
+    })
+    .catch(err => console.error(err));
+  },[]);
+
+const [songs , setSongs] = useState([]);
+const [imageLoadError, setImageLoadError] = useState(false);
+
+
+useEffect(() => {
+  const fetchSongs = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/song/api/songs'); // Update with your actual backend domain
+      if (response.ok) {
+        const data = await response.json();
+        setSongs(data);
+      } else {
+        throw new Error('Failed to fetch songs');
+      }
+    } catch (error) {
+      console.error('Error fetching songs:', error);
+    }
+  };
+
+  fetchSongs();
+}, []);
+
+const handleImageError = () => {
+  setImageLoadError(true);
+};
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioPath, setAudioPath] = useState(null);
 
@@ -262,36 +107,60 @@ export default function LHome() {
   
   return (
     <>
-      <div className='container '>
-        <Container className={`${Style.container}`}>
+    <div className='container'>
+    <Container className={`${Style.container}`}>
           <SplitPane
             split='vertical'
-            minSize={305}
+            minSize={280}
             maxSize={-1100}
-            defaultSize={400}
+            defaultSize={340}
             style={{ backgroundColor: 'black' }}
           >
-            <div className={` me-1 ${Style.pane}`}>
+            <div className={`me-1 ${Style.pane}`}>
+              {/* {install === 'library' && <Sidebar handleLibClick={handleLibClick}/> } */}
               <Sidebar handlelibclick={handlelibclick} />
             </div>
-            <div className={`me-1 me-1 ${Style.pane}`}>
-            {install === 'install' && <InstallApp handleprofileClick={handleprofileClick} handleBellIconClick={handleBellIconClick} />}
-              {install === 'bellIcon' && <BellIcon handleprofileClick={handleprofileClick} handleInstallClick={handleInstallClick} />}
-              {install === 'profile' && <Profile handleInstallClick={handleInstallClick} handleBellIconClick={handleBellIconClick} />}
-              {/* {install === '' &&(playlist ? <LibComp cmp={playlist} playlistitems={playlistitems} handleBellIconClick={handleBellIconClick} /> : <Plylist playlistitems={songs} onPlayPause={handlePlayPause} handleprofileClick={handleprofileClick} handleInstallClick={handleInstallClick} handleBellIconClick={handleBellIconClick}  /> )} */}
-     
-            {/* <Plylist playlistitems={songs} onPlayPause={handlePlayPause}  /> */}
-
-          {install === '' &&(playlist ? <LibComp cmp={playlist} playlistitems={playlistitems} handleBellIconClick={handleBellIconClick} /> :
-          <Playlist playlistitems={songs}
-          radio={radio} album={album} artist={artist} onPlayPause={handlePlayPause} handleprofileClick={handleprofileClick} handleInstallClick={handleInstallClick} handleBellIconClick={handleBellIconClick}  />
- )}
+            <div className={`me-1 ${Style.pane}`}>
+              {install === 'install' && 
+              <InstallApp
+               handleInstallClick={handleInstallClick} 
+               handleprofileClick={handleprofileClick} 
+               handleBellIconClick={handleBellIconClick} />}
               
-            </div>
+              
+              {install === 'bellIcon' && 
+              <BellIcon
+              handleBellIconClick={handleBellIconClick}
+              handleprofileClick={handleprofileClick} 
+              handleInstallClick={handleInstallClick} />}
+
+
+              {install === 'profile' && 
+              <Profile 
+              handleInstallClick={handleInstallClick} 
+              handleprofileClick={handleprofileClick} 
+              handleBellIconClick={handleBellIconClick} />}
+              
+              {install === '' &&
+               (playlist  ? 
+              <LibComp cmp={playlist}
+               playlistitems={songs}
+              handleInstallClick={handleInstallClick} 
+              handleprofileClick={handleprofileClick} 
+               handleBellIconClick={handleBellIconClick} /> 
+               :
+                <Playlist playlistitems={songs}
+                // radio={radio} album={album} artist={artist}
+                handleImageError={handleImageError}
+                 onPlayPause={handlePlayPause}
+                handleprofileClick={handleprofileClick} 
+                handleInstallClick={handleInstallClick}
+                handleBellIconClick={handleBellIconClick}  />)}
+             </div>
           </SplitPane>
         </Container>
-        <Bottom audioPath={audioPath}  isPlaying ={isPlaying}  onPlayPause={handlePlayPause} playlistitems={playlistitems}  />
-      </div>
-    </>
+    </div>
+    <Bottom audioPath={audioPath}  isPlaying ={isPlaying}  onPlayPause={handlePlayPause} playlistitems={songs}  />
+  </>
   );
 }

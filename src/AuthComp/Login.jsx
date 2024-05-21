@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import LsNavbar from './LsNavbar'
 
-export default function Login() {
+export default function Login({ setIsLoggedIn }) {
   const [showPassword, setShowPassword] = useState(false);
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
@@ -29,7 +29,11 @@ export default function Login() {
         console.log(data);
         // data.email == email && data.password == password 
         if(data == true ) {
+          // setIsLoggedIn(true); // Update login status
           navigate("/Home");
+
+        }else{
+          navigate("/login")
         }
       })
     })

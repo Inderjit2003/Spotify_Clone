@@ -8,11 +8,18 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Howl, Howler } from 'howler';
 
-export default function AlbumPlay() {
+export default function AlbumPlay({album , index}) {
+  const selectedItem = album[index];
+
   
   return (
     <div>
-      Hello
+      <Container >
+      <Row>
+
+</Row>
+
+            </Container>
     </div>
   )
 }
