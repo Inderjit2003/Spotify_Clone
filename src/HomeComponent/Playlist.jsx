@@ -18,7 +18,7 @@ import songContext from '../contexts/songContext';
 import ArtistPlay from './ArtistPlay';
 import RadioPlay from './RadioPlay';
 
-export default function Playlist({ playlistitems,handleImageError,  handleBellIconClick, handleInstallClick, handleprofileClick }) {
+export default function Playlist({ playlistitems,  handleBellIconClick, handleInstallClick, handleprofileClick }) {
     const [showDropdown, setShowDropdown] = useState(false);
     const [artistHoveredIndex, setArtistHoveredIndex] = useState(null);
     const [albumHoveredIndex, setAlbumHoveredIndex] = useState(null);
@@ -268,9 +268,8 @@ const handleRadioClick = (index) =>{
           <div key={index} className={`card ${style.card} mb-3`}>
             <div className="row g-0">
               <div className="col-md-4">
-                <img    src={`http://localhost:3000/uploads/images/song/${item.imageFilename}`}
+                <img   src={item.imageURL}
               alt={item.title}
-              onError={handleImageError}
                className="img-fluid rounded-start" />
               </div>
               <div className="col-md-8">

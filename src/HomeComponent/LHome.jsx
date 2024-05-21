@@ -20,8 +20,8 @@ export default function LHome() {
 
   useEffect(() =>{
     fetch("http://localhost:3000",{
-      method:'get',
-      credentials: 'include',})
+      method:'GET',
+     })
     .then(res => res.json())
     .then(data => {
        console.log(data); // Log the fetched user details
@@ -31,8 +31,8 @@ export default function LHome() {
   },[]);
 
 const [songs , setSongs] = useState([]);
-const [imageLoadError, setImageLoadError] = useState(false);
 
+const [imageLoadError, setImageLoadError] = useState(false);
 
 useEffect(() => {
   const fetchSongs = async () => {
@@ -40,6 +40,7 @@ useEffect(() => {
       const response = await fetch('http://localhost:3000/song/api/songs'); // Update with your actual backend domain
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         setSongs(data);
       } else {
         throw new Error('Failed to fetch songs');
@@ -52,9 +53,6 @@ useEffect(() => {
   fetchSongs();
 }, []);
 
-const handleImageError = () => {
-  setImageLoadError(true);
-};
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioPath, setAudioPath] = useState(null);
@@ -151,7 +149,7 @@ const handleImageError = () => {
                :
                 <Playlist playlistitems={songs}
                 // radio={radio} album={album} artist={artist}
-                handleImageError={handleImageError}
+                // handleImageError={handleImageError}
                  onPlayPause={handlePlayPause}
                 handleprofileClick={handleprofileClick} 
                 handleInstallClick={handleInstallClick}
